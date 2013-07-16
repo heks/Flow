@@ -1,0 +1,911 @@
+Classic Timing Analyzer report for Flow
+Fri Dec 07 15:49:02 2012
+Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Summary
+  3. Timing Analyzer Settings
+  4. Clock Settings Summary
+  5. Clock Setup: 'clk'
+  6. tsu
+  7. tco
+  8. th
+  9. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2010 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                                                                                                                                            ;
++------------------------------+-------+---------------+----------------------------------+----------------------------+--------------------------------------+------------+----------+--------------+
+; Type                         ; Slack ; Required Time ; Actual Time                      ; From                       ; To                                   ; From Clock ; To Clock ; Failed Paths ;
++------------------------------+-------+---------------+----------------------------------+----------------------------+--------------------------------------+------------+----------+--------------+
+; Worst-case tsu               ; N/A   ; None          ; 10.784 ns                        ; reset                      ; Color_Mapper:inst|flow7_x[5][5]      ; --         ; clk      ; 0            ;
+; Worst-case tco               ; N/A   ; None          ; 16.164 ns                        ; vga_controller:inst2|vc[6] ; blank                                ; clk        ; --       ; 0            ;
+; Worst-case th                ; N/A   ; None          ; -0.062 ns                        ; ps2data                    ; keyboardVhdl:inst25|shiftRegSig1[10] ; --         ; clk      ; 0            ;
+; Clock Setup: 'clk'           ; N/A   ; None          ; 65.55 MHz ( period = 15.256 ns ) ; vga_controller:inst2|hc[2] ; Color_Mapper:inst|red_sig_1[9]       ; clk        ; clk      ; 0            ;
+; Total number of failed paths ;       ;               ;                                  ;                            ;                                      ;            ;          ; 0            ;
++------------------------------+-------+---------------+----------------------------------+----------------------------+--------------------------------------+------------+----------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Settings                                                                                                                            ;
++------------------------------------------------------------------------------------------------------+--------------------+------+----+-------------+
+; Option                                                                                               ; Setting            ; From ; To ; Entity Name ;
++------------------------------------------------------------------------------------------------------+--------------------+------+----+-------------+
+; Device Name                                                                                          ; EP2C35F672C6       ;      ;    ;             ;
+; Timing Models                                                                                        ; Final              ;      ;    ;             ;
+; Default hold multicycle                                                                              ; Same as Multicycle ;      ;    ;             ;
+; Cut paths between unrelated clock domains                                                            ; On                 ;      ;    ;             ;
+; Cut off read during write signal paths                                                               ; On                 ;      ;    ;             ;
+; Cut off feedback from I/O pins                                                                       ; On                 ;      ;    ;             ;
+; Report Combined Fast/Slow Timing                                                                     ; Off                ;      ;    ;             ;
+; Ignore Clock Settings                                                                                ; Off                ;      ;    ;             ;
+; Analyze latches as synchronous elements                                                              ; On                 ;      ;    ;             ;
+; Enable Recovery/Removal analysis                                                                     ; Off                ;      ;    ;             ;
+; Enable Clock Latency                                                                                 ; Off                ;      ;    ;             ;
+; Use TimeQuest Timing Analyzer                                                                        ; Off                ;      ;    ;             ;
+; Minimum Core Junction Temperature                                                                    ; 0                  ;      ;    ;             ;
+; Maximum Core Junction Temperature                                                                    ; 85                 ;      ;    ;             ;
+; Number of source nodes to report per destination node                                                ; 10                 ;      ;    ;             ;
+; Number of destination nodes to report                                                                ; 10                 ;      ;    ;             ;
+; Number of paths to report                                                                            ; 200                ;      ;    ;             ;
+; Report Minimum Timing Checks                                                                         ; Off                ;      ;    ;             ;
+; Use Fast Timing Models                                                                               ; Off                ;      ;    ;             ;
+; Report IO Paths Separately                                                                           ; Off                ;      ;    ;             ;
+; Perform Multicorner Analysis                                                                         ; On                 ;      ;    ;             ;
+; Reports the worst-case path for each clock domain and analysis                                       ; Off                ;      ;    ;             ;
+; Reports worst-case timing paths for each clock domain and analysis                                   ; On                 ;      ;    ;             ;
+; Specifies the maximum number of worst-case timing paths to report for each clock domain and analysis ; 100                ;      ;    ;             ;
+; Removes common clock path pessimism (CCPP) during slack computation                                  ; Off                ;      ;    ;             ;
+; Output I/O Timing Endpoint                                                                           ; Near End           ;      ;    ;             ;
++------------------------------------------------------------------------------------------------------+--------------------+------+----+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Settings Summary                                                                                                                                                             ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; Clock Node Name ; Clock Setting Name ; Type     ; Fmax Requirement ; Early Latency ; Late Latency ; Based on ; Multiply Base Fmax by ; Divide Base Fmax by ; Offset ; Phase offset ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; clk             ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Setup: 'clk'                                                                                                                                                                                                                                                                          ;
++-----------------------------------------+-----------------------------------------------------+----------------------------------------------+----------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; Slack                                   ; Actual fmax (period)                                ; From                                         ; To                               ; From Clock ; To Clock ; Required Setup Relationship ; Required Longest P2P Time ; Actual Longest P2P Time ;
++-----------------------------------------+-----------------------------------------------------+----------------------------------------------+----------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; N/A                                     ; 65.55 MHz ( period = 15.256 ns )                    ; vga_controller:inst2|hc[2]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.997 ns               ;
+; N/A                                     ; 65.62 MHz ( period = 15.239 ns )                    ; vga_controller:inst2|hc[0]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.980 ns               ;
+; N/A                                     ; 65.63 MHz ( period = 15.237 ns )                    ; vga_controller:inst2|hc[3]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.978 ns               ;
+; N/A                                     ; 65.92 MHz ( period = 15.170 ns )                    ; vga_controller:inst2|hc[1]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.911 ns               ;
+; N/A                                     ; 65.97 MHz ( period = 15.159 ns )                    ; vga_controller:inst2|hc[2]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.910 ns               ;
+; N/A                                     ; 66.05 MHz ( period = 15.140 ns )                    ; vga_controller:inst2|hc[3]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.891 ns               ;
+; N/A                                     ; 66.14 MHz ( period = 15.120 ns )                    ; vga_controller:inst2|hc[0]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.871 ns               ;
+; N/A                                     ; 66.22 MHz ( period = 15.101 ns )                    ; vga_controller:inst2|hc[0]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.840 ns               ;
+; N/A                                     ; 66.25 MHz ( period = 15.094 ns )                    ; vga_controller:inst2|hc[0]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.845 ns               ;
+; N/A                                     ; 66.40 MHz ( period = 15.061 ns )                    ; vga_controller:inst2|hc[0]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.821 ns               ;
+; N/A                                     ; 66.54 MHz ( period = 15.028 ns )                    ; vga_controller:inst2|hc[5]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.769 ns               ;
+; N/A                                     ; 66.55 MHz ( period = 15.026 ns )                    ; vga_controller:inst2|vc[3]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.769 ns               ;
+; N/A                                     ; 66.57 MHz ( period = 15.022 ns )                    ; vga_controller:inst2|hc[2]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.782 ns               ;
+; N/A                                     ; 66.57 MHz ( period = 15.022 ns )                    ; vga_controller:inst2|vc[0]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.749 ns               ;
+; N/A                                     ; 66.65 MHz ( period = 15.003 ns )                    ; vga_controller:inst2|hc[3]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.763 ns               ;
+; N/A                                     ; 66.75 MHz ( period = 14.981 ns )                    ; vga_controller:inst2|vc[0]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.727 ns               ;
+; N/A                                     ; 66.80 MHz ( period = 14.969 ns )                    ; vga_controller:inst2|hc[1]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.720 ns               ;
+; N/A                                     ; 66.88 MHz ( period = 14.952 ns )                    ; vga_controller:inst2|hc[7]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.693 ns               ;
+; N/A                                     ; 66.97 MHz ( period = 14.932 ns )                    ; vga_controller:inst2|vc[4]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.691 ns               ;
+; N/A                                     ; 66.97 MHz ( period = 14.931 ns )                    ; vga_controller:inst2|hc[5]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.682 ns               ;
+; N/A                                     ; 66.98 MHz ( period = 14.929 ns )                    ; vga_controller:inst2|vc[3]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.682 ns               ;
+; N/A                                     ; 67.01 MHz ( period = 14.923 ns )                    ; vga_controller:inst2|hc[1]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.683 ns               ;
+; N/A                                     ; 67.01 MHz ( period = 14.923 ns )                    ; vga_controller:inst2|hc[4]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.663 ns               ;
+; N/A                                     ; 67.03 MHz ( period = 14.919 ns )                    ; vga_controller:inst2|vc[2]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.662 ns               ;
+; N/A                                     ; 67.10 MHz ( period = 14.903 ns )                    ; vga_controller:inst2|vc[1]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.653 ns               ;
+; N/A                                     ; 67.31 MHz ( period = 14.856 ns )                    ; vga_controller:inst2|vc[0]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.593 ns               ;
+; N/A                                     ; 67.32 MHz ( period = 14.855 ns )                    ; vga_controller:inst2|hc[7]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.606 ns               ;
+; N/A                                     ; 67.34 MHz ( period = 14.849 ns )                    ; vga_controller:inst2|hc[0]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.611 ns               ;
+; N/A                                     ; 67.38 MHz ( period = 14.841 ns )                    ; vga_controller:inst2|hc[2]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.592 ns               ;
+; N/A                                     ; 67.39 MHz ( period = 14.840 ns )                    ; vga_controller:inst2|hc[2]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.602 ns               ;
+; N/A                                     ; 67.39 MHz ( period = 14.840 ns )                    ; vga_controller:inst2|hc[5]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.579 ns               ;
+; N/A                                     ; 67.42 MHz ( period = 14.833 ns )                    ; vga_controller:inst2|hc[5]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.584 ns               ;
+; N/A                                     ; 67.45 MHz ( period = 14.826 ns )                    ; vga_controller:inst2|hc[4]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.576 ns               ;
+; N/A                                     ; 67.45 MHz ( period = 14.825 ns )                    ; vga_controller:inst2|hc[2]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.564 ns               ;
+; N/A                                     ; 67.47 MHz ( period = 14.822 ns )                    ; vga_controller:inst2|hc[3]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.573 ns               ;
+; N/A                                     ; 67.47 MHz ( period = 14.822 ns )                    ; vga_controller:inst2|vc[2]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.575 ns               ;
+; N/A                                     ; 67.47 MHz ( period = 14.821 ns )                    ; vga_controller:inst2|hc[3]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.583 ns               ;
+; N/A                                     ; 67.47 MHz ( period = 14.821 ns )                    ; vga_controller:inst2|vc[0]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.546 ns               ;
+; N/A                                     ; 67.50 MHz ( period = 14.815 ns )                    ; vga_controller:inst2|hc[2]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.568 ns               ;
+; N/A                                     ; 67.54 MHz ( period = 14.806 ns )                    ; vga_controller:inst2|hc[3]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.545 ns               ;
+; N/A                                     ; 67.54 MHz ( period = 14.806 ns )                    ; vga_controller:inst2|vc[1]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.566 ns               ;
+; N/A                                     ; 67.56 MHz ( period = 14.801 ns )                    ; vga_controller:inst2|hc[1]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.540 ns               ;
+; N/A                                     ; 67.57 MHz ( period = 14.800 ns )                    ; vga_controller:inst2|hc[5]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.560 ns               ;
+; N/A                                     ; 67.59 MHz ( period = 14.796 ns )                    ; vga_controller:inst2|hc[3]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.549 ns               ;
+; N/A                                     ; 67.59 MHz ( period = 14.794 ns )                    ; vga_controller:inst2|hc[1]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.545 ns               ;
+; N/A                                     ; 67.60 MHz ( period = 14.792 ns )                    ; vga_controller:inst2|vc[3]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.554 ns               ;
+; N/A                                     ; 67.61 MHz ( period = 14.790 ns )                    ; vga_controller:inst2|hc[6]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.513 ns               ;
+; N/A                                     ; 67.68 MHz ( period = 14.776 ns )                    ; vga_controller:inst2|hc[0]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.529 ns               ;
+; N/A                                     ; 67.69 MHz ( period = 14.773 ns )                    ; vga_controller:inst2|vc[2]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.535 ns               ;
+; N/A                                     ; 67.72 MHz ( period = 14.766 ns )                    ; vga_controller:inst2|hc[1]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.528 ns               ;
+; N/A                                     ; 67.74 MHz ( period = 14.762 ns )                    ; vga_controller:inst2|hc[4]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.521 ns               ;
+; N/A                                     ; 67.92 MHz ( period = 14.724 ns )                    ; vga_controller:inst2|hc[8]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.451 ns               ;
+; N/A                                     ; 67.94 MHz ( period = 14.718 ns )                    ; vga_controller:inst2|hc[7]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.478 ns               ;
+; N/A                                     ; 68.00 MHz ( period = 14.705 ns )                    ; vga_controller:inst2|vc[6]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.447 ns               ;
+; N/A                                     ; 68.05 MHz ( period = 14.695 ns )                    ; vga_controller:inst2|vc[0]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.443 ns               ;
+; N/A                                     ; 68.06 MHz ( period = 14.693 ns )                    ; vga_controller:inst2|hc[6]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.426 ns               ;
+; N/A                                     ; 68.06 MHz ( period = 14.692 ns )                    ; vga_controller:inst2|vc[0]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.429 ns               ;
+; N/A                                     ; 68.08 MHz ( period = 14.689 ns )                    ; vga_controller:inst2|vc[0]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.428 ns               ;
+; N/A                                     ; 68.10 MHz ( period = 14.684 ns )                    ; vga_controller:inst2|hc[6]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.426 ns               ;
+; N/A                                     ; 68.17 MHz ( period = 14.669 ns )                    ; vga_controller:inst2|vc[1]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.438 ns               ;
+; N/A                                     ; 68.27 MHz ( period = 14.648 ns )                    ; vga_controller:inst2|vc[5]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.417 ns               ;
+; N/A                                     ; 68.32 MHz ( period = 14.636 ns )                    ; Color_Mapper:inst|flow10_y[11][1]            ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.520 ns               ;
+; N/A                                     ; 68.37 MHz ( period = 14.627 ns )                    ; vga_controller:inst2|hc[8]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.364 ns               ;
+; N/A                                     ; 68.38 MHz ( period = 14.625 ns )                    ; vga_controller:inst2|hc[1]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.378 ns               ;
+; N/A                                     ; 68.39 MHz ( period = 14.622 ns )                    ; vga_controller:inst2|hc[5]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.375 ns               ;
+; N/A                                     ; 68.39 MHz ( period = 14.622 ns )                    ; vga_controller:inst2|vc[5]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.372 ns               ;
+; N/A                                     ; 68.41 MHz ( period = 14.617 ns )                    ; vga_controller:inst2|vc[7]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.367 ns               ;
+; N/A                                     ; 68.43 MHz ( period = 14.613 ns )                    ; vga_controller:inst2|vc[2]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.354 ns               ;
+; N/A                                     ; 68.43 MHz ( period = 14.613 ns )                    ; vga_controller:inst2|vc[8]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.391 ns               ;
+; N/A                                     ; 68.44 MHz ( period = 14.612 ns )                    ; vga_controller:inst2|hc[5]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.374 ns               ;
+; N/A                                     ; 68.44 MHz ( period = 14.611 ns )                    ; single_reg_unit:inst16|count[0]              ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 14.395 ns               ;
+; N/A                                     ; 68.44 MHz ( period = 14.611 ns )                    ; vga_controller:inst2|vc[3]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.364 ns               ;
+; N/A                                     ; 68.45 MHz ( period = 14.610 ns )                    ; vga_controller:inst2|vc[3]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.374 ns               ;
+; N/A                                     ; 68.45 MHz ( period = 14.609 ns )                    ; vga_controller:inst2|vc[4]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.387 ns               ;
+; N/A                                     ; 68.46 MHz ( period = 14.608 ns )                    ; vga_controller:inst2|vc[6]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.360 ns               ;
+; N/A                                     ; 68.48 MHz ( period = 14.602 ns )                    ; vga_controller:inst2|hc[4]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.340 ns               ;
+; N/A                                     ; 68.52 MHz ( period = 14.595 ns )                    ; vga_controller:inst2|vc[3]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.336 ns               ;
+; N/A                                     ; 68.54 MHz ( period = 14.591 ns )                    ; vga_controller:inst2|vc[1]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.339 ns               ;
+; N/A                                     ; 68.56 MHz ( period = 14.585 ns )                    ; vga_controller:inst2|vc[3]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.340 ns               ;
+; N/A                                     ; 68.57 MHz ( period = 14.584 ns )                    ; vga_controller:inst2|vc[1]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.344 ns               ;
+; N/A                                     ; 68.59 MHz ( period = 14.580 ns )                    ; controller:inst19|Y_Pos_sig[5]               ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 14.429 ns               ;
+; N/A                                     ; 68.60 MHz ( period = 14.577 ns )                    ; vga_controller:inst2|vc[7]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.346 ns               ;
+; N/A                                     ; 68.62 MHz ( period = 14.573 ns )                    ; vga_controller:inst2|hc[4]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.323 ns               ;
+; N/A                                     ; 68.75 MHz ( period = 14.546 ns )                    ; vga_controller:inst2|vc[2]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.299 ns               ;
+; N/A                                     ; 68.78 MHz ( period = 14.539 ns )                    ; Color_Mapper:inst|flow10_y[11][1]            ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.433 ns               ;
+; N/A                                     ; 68.79 MHz ( period = 14.537 ns )                    ; vga_controller:inst2|hc[7]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.288 ns               ;
+; N/A                                     ; 68.79 MHz ( period = 14.536 ns )                    ; vga_controller:inst2|hc[7]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.298 ns               ;
+; N/A                                     ; 68.81 MHz ( period = 14.533 ns )                    ; single_reg_unit:inst16|reg_value_y[22][2]    ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 14.300 ns               ;
+; N/A                                     ; 68.85 MHz ( period = 14.524 ns )                    ; vga_controller:inst2|hc[6]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.245 ns               ;
+; N/A                                     ; 68.87 MHz ( period = 14.521 ns )                    ; vga_controller:inst2|hc[7]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.260 ns               ;
+; N/A                                     ; 68.89 MHz ( period = 14.516 ns )                    ; controller:inst19|Y_Pos_sig[4]               ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 14.365 ns               ;
+; N/A                                     ; 68.91 MHz ( period = 14.511 ns )                    ; vga_controller:inst2|hc[7]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.264 ns               ;
+; N/A                                     ; 68.93 MHz ( period = 14.507 ns )                    ; vga_controller:inst2|hc[4]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.268 ns               ;
+; N/A                                     ; 68.94 MHz ( period = 14.505 ns )                    ; vga_controller:inst2|hc[0]                   ; Color_Mapper:inst|blue_sig_1[2]  ; clk        ; clk      ; None                        ; None                      ; 14.246 ns               ;
+; N/A                                     ; 68.95 MHz ( period = 14.504 ns )                    ; vga_controller:inst2|vc[4]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.273 ns               ;
+; N/A                                     ; 68.95 MHz ( period = 14.503 ns )                    ; vga_controller:inst2|vc[2]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.267 ns               ;
+; N/A                                     ; 68.96 MHz ( period = 14.501 ns )                    ; vga_controller:inst2|hc[0]                   ; Color_Mapper:inst|green_sig_1[9] ; clk        ; clk      ; None                        ; None                      ; 14.244 ns               ;
+; N/A                                     ; 68.97 MHz ( period = 14.500 ns )                    ; vga_controller:inst2|hc[8]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.246 ns               ;
+; N/A                                     ; 69.02 MHz ( period = 14.488 ns )                    ; vga_controller:inst2|vc[5]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.236 ns               ;
+; N/A                                     ; 69.03 MHz ( period = 14.487 ns )                    ; vga_controller:inst2|vc[1]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.258 ns               ;
+; N/A                                     ; 69.04 MHz ( period = 14.484 ns )                    ; vga_controller:inst2|vc[6]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.245 ns               ;
+; N/A                                     ; 69.05 MHz ( period = 14.482 ns )                    ; vga_controller:inst2|hc[4]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.234 ns               ;
+; N/A                                     ; 69.06 MHz ( period = 14.481 ns )                    ; vga_controller:inst2|vc[2]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.236 ns               ;
+; N/A                                     ; 69.07 MHz ( period = 14.478 ns )                    ; vga_controller:inst2|hc[9]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.205 ns               ;
+; N/A                                     ; 69.13 MHz ( period = 14.465 ns )                    ; vga_controller:inst2|vc[7]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.225 ns               ;
+; N/A                                     ; 69.14 MHz ( period = 14.464 ns )                    ; vga_controller:inst2|vc[5]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.224 ns               ;
+; N/A                                     ; 69.15 MHz ( period = 14.462 ns )                    ; vga_controller:inst2|vc[1]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.224 ns               ;
+; N/A                                     ; 69.16 MHz ( period = 14.459 ns )                    ; vga_controller:inst2|hc[6]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.192 ns               ;
+; N/A                                     ; 69.19 MHz ( period = 14.453 ns )                    ; vga_controller:inst2|vc[8]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.210 ns               ;
+; N/A                                     ; 69.21 MHz ( period = 14.449 ns )                    ; vga_controller:inst2|vc[4]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.206 ns               ;
+; N/A                                     ; 69.26 MHz ( period = 14.439 ns )                    ; vga_controller:inst2|hc[0]                   ; Color_Mapper:inst|blue_sig_1[4]  ; clk        ; clk      ; None                        ; None                      ; 14.186 ns               ;
+; N/A                                     ; 69.31 MHz ( period = 14.427 ns )                    ; vga_controller:inst2|hc[1]                   ; Color_Mapper:inst|green_sig_1[9] ; clk        ; clk      ; None                        ; None                      ; 14.170 ns               ;
+; N/A                                     ; 69.34 MHz ( period = 14.422 ns )                    ; vga_controller:inst2|hc[1]                   ; Color_Mapper:inst|blue_sig_1[2]  ; clk        ; clk      ; None                        ; None                      ; 14.163 ns               ;
+; N/A                                     ; 69.36 MHz ( period = 14.417 ns )                    ; vga_controller:inst2|vc[7]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.165 ns               ;
+; N/A                                     ; 69.40 MHz ( period = 14.410 ns )                    ; vga_controller:inst2|vc[8]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.179 ns               ;
+; N/A                                     ; 69.43 MHz ( period = 14.402 ns )                    ; Color_Mapper:inst|flow10_y[11][1]            ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 14.305 ns               ;
+; N/A                                     ; 69.45 MHz ( period = 14.398 ns )                    ; vga_controller:inst2|hc[6]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.142 ns               ;
+; N/A                                     ; 69.48 MHz ( period = 14.392 ns )                    ; vga_controller:inst2|hc[6]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.127 ns               ;
+; N/A                                     ; 69.54 MHz ( period = 14.381 ns )                    ; vga_controller:inst2|hc[9]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.118 ns               ;
+; N/A                                     ; 69.58 MHz ( period = 14.371 ns )                    ; Color_Mapper:inst|flow6_x[0][4]              ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.250 ns               ;
+; N/A                                     ; 69.63 MHz ( period = 14.362 ns )                    ; vga_controller:inst2|vc[5]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.133 ns               ;
+; N/A                                     ; 69.66 MHz ( period = 14.356 ns )                    ; vga_controller:inst2|vc[5]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.118 ns               ;
+; N/A                                     ; 69.66 MHz ( period = 14.355 ns )                    ; controller:inst19|X_Pos_sig[8]               ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 14.212 ns               ;
+; N/A                                     ; 69.68 MHz ( period = 14.351 ns )                    ; Color_Mapper:inst|flow10_y[0][4]             ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.237 ns               ;
+; N/A                                     ; 69.70 MHz ( period = 14.348 ns )                    ; vga_controller:inst2|vc[5]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.108 ns               ;
+; N/A                                     ; 69.71 MHz ( period = 14.346 ns )                    ; single_reg_unit:inst16|count[1]              ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 14.130 ns               ;
+; N/A                                     ; 69.74 MHz ( period = 14.340 ns )                    ; vga_controller:inst2|hc[8]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.065 ns               ;
+; N/A                                     ; 69.76 MHz ( period = 14.334 ns )                    ; vga_controller:inst2|vc[9]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.077 ns               ;
+; N/A                                     ; 69.78 MHz ( period = 14.331 ns )                    ; Color_Mapper:inst|flow4_y[3][3]              ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.225 ns               ;
+; N/A                                     ; 69.80 MHz ( period = 14.327 ns )                    ; vga_controller:inst2|vc[8]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.107 ns               ;
+; N/A                                     ; 69.81 MHz ( period = 14.324 ns )                    ; vga_controller:inst2|vc[6]                   ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.064 ns               ;
+; N/A                                     ; 69.82 MHz ( period = 14.323 ns )                    ; vga_controller:inst2|vc[4]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.103 ns               ;
+; N/A                                     ; 69.82 MHz ( period = 14.322 ns )                    ; Color_Mapper:inst|flow4_x[3][6]              ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.215 ns               ;
+; N/A                                     ; 69.83 MHz ( period = 14.321 ns )                    ; vga_controller:inst2|vc[8]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.092 ns               ;
+; N/A                                     ; 69.85 MHz ( period = 14.317 ns )                    ; vga_controller:inst2|vc[4]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.088 ns               ;
+; N/A                                     ; 69.87 MHz ( period = 14.313 ns )                    ; vga_controller:inst2|vc[8]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.082 ns               ;
+; N/A                                     ; 69.88 MHz ( period = 14.310 ns )                    ; Color_Mapper:inst|flow9_y[2][5]              ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 14.132 ns               ;
+; N/A                                     ; 69.89 MHz ( period = 14.309 ns )                    ; vga_controller:inst2|hc[8]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.046 ns               ;
+; N/A                                     ; 69.89 MHz ( period = 14.309 ns )                    ; vga_controller:inst2|vc[4]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.078 ns               ;
+; N/A                                     ; 69.89 MHz ( period = 14.308 ns )                    ; vga_controller:inst2|hc[8]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.056 ns               ;
+; N/A                                     ; 69.97 MHz ( period = 14.292 ns )                    ; vga_controller:inst2|hc[2]                   ; Color_Mapper:inst|green_sig_1[9] ; clk        ; clk      ; None                        ; None                      ; 14.035 ns               ;
+; N/A                                     ; 69.97 MHz ( period = 14.291 ns )                    ; controller:inst19|X_Pos_sig[9]               ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 14.148 ns               ;
+; N/A                                     ; 69.97 MHz ( period = 14.291 ns )                    ; vga_controller:inst2|vc[7]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.062 ns               ;
+; N/A                                     ; 69.98 MHz ( period = 14.290 ns )                    ; vga_controller:inst2|vc[6]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.042 ns               ;
+; N/A                                     ; 69.98 MHz ( period = 14.289 ns )                    ; vga_controller:inst2|vc[6]                   ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.052 ns               ;
+; N/A                                     ; 70.00 MHz ( period = 14.285 ns )                    ; vga_controller:inst2|vc[7]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.047 ns               ;
+; N/A                                     ; 70.01 MHz ( period = 14.283 ns )                    ; vga_controller:inst2|hc[8]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.022 ns               ;
+; N/A                                     ; 70.04 MHz ( period = 14.277 ns )                    ; vga_controller:inst2|vc[7]                   ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.037 ns               ;
+; N/A                                     ; 70.06 MHz ( period = 14.273 ns )                    ; vga_controller:inst2|hc[3]                   ; Color_Mapper:inst|green_sig_1[9] ; clk        ; clk      ; None                        ; None                      ; 14.016 ns               ;
+; N/A                                     ; 70.11 MHz ( period = 14.264 ns )                    ; Color_Mapper:inst|flow9_y[2][4]              ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 14.086 ns               ;
+; N/A                                     ; 70.11 MHz ( period = 14.264 ns )                    ; vga_controller:inst2|vc[6]                   ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.018 ns               ;
+; N/A                                     ; 70.11 MHz ( period = 14.264 ns )                    ; vga_controller:inst2|hc[4]                   ; Color_Mapper:inst|green_sig_1[9] ; clk        ; clk      ; None                        ; None                      ; 14.006 ns               ;
+; N/A                                     ; 70.11 MHz ( period = 14.264 ns )                    ; vga_controller:inst2|vc[8]                   ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.023 ns               ;
+; N/A                                     ; 70.19 MHz ( period = 14.248 ns )                    ; single_reg_unit:inst16|reg_value_y[2][2]     ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 14.043 ns               ;
+; N/A                                     ; 70.20 MHz ( period = 14.244 ns )                    ; vga_controller:inst2|hc[9]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 13.990 ns               ;
+; N/A                                     ; 70.20 MHz ( period = 14.244 ns )                    ; Color_Mapper:inst|flow2_y[2][3]              ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.160 ns               ;
+; N/A                                     ; 70.22 MHz ( period = 14.240 ns )                    ; vga_controller:inst2|hc[1]                   ; Color_Mapper:inst|blue_sig_1[4]  ; clk        ; clk      ; None                        ; None                      ; 13.987 ns               ;
+; N/A                                     ; 70.24 MHz ( period = 14.237 ns )                    ; vga_controller:inst2|vc[9]                   ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 13.990 ns               ;
+; N/A                                     ; 70.27 MHz ( period = 14.230 ns )                    ; vga_controller:inst2|hc[4]                   ; Color_Mapper:inst|blue_sig_1[4]  ; clk        ; clk      ; None                        ; None                      ; 13.976 ns               ;
+; N/A                                     ; 70.28 MHz ( period = 14.229 ns )                    ; Color_Mapper:inst|flow11_x[11][3]            ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.148 ns               ;
+; N/A                                     ; 70.29 MHz ( period = 14.226 ns )                    ; vga_controller:inst2|vc[0]                   ; Color_Mapper:inst|green_sig_1[9] ; clk        ; clk      ; None                        ; None                      ; 13.955 ns               ;
+; N/A                                     ; 70.30 MHz ( period = 14.224 ns )                    ; Color_Mapper:inst|flow5_x[2][3]              ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.147 ns               ;
+; N/A                                     ; 70.32 MHz ( period = 14.221 ns )                    ; Color_Mapper:inst|flow10_y[11][1]            ; Color_Mapper:inst|green_sig_1[2] ; clk        ; clk      ; None                        ; None                      ; 14.115 ns               ;
+; N/A                                     ; 70.32 MHz ( period = 14.220 ns )                    ; Color_Mapper:inst|flow10_y[11][1]            ; Color_Mapper:inst|blue_sig_1[9]  ; clk        ; clk      ; None                        ; None                      ; 14.125 ns               ;
+; N/A                                     ; 70.34 MHz ( period = 14.217 ns )                    ; single_reg_unit:inst16|reg_value_x[15][9]    ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 13.992 ns               ;
+; N/A                                     ; 70.36 MHz ( period = 14.213 ns )                    ; Color_Mapper:inst|flow1_x[1][4]              ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.121 ns               ;
+; N/A                                     ; 70.37 MHz ( period = 14.211 ns )                    ; Color_Mapper:inst|flow8_y[3][4]              ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.132 ns               ;
+; N/A                                     ; 70.40 MHz ( period = 14.205 ns )                    ; controller:inst19|Y_Pos_sig[1]               ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 14.055 ns               ;
+; N/A                                     ; 70.40 MHz ( period = 14.205 ns )                    ; Color_Mapper:inst|flow10_y[11][1]            ; Color_Mapper:inst|green_sig_1[8] ; clk        ; clk      ; None                        ; None                      ; 14.087 ns               ;
+; N/A                                     ; 70.41 MHz ( period = 14.202 ns )                    ; Color_Mapper:inst|flow4_x[11][5]             ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.128 ns               ;
+; N/A                                     ; 70.45 MHz ( period = 14.195 ns )                    ; Color_Mapper:inst|flow10_y[11][1]            ; Color_Mapper:inst|green_sig_1[3] ; clk        ; clk      ; None                        ; None                      ; 14.091 ns               ;
+; N/A                                     ; 70.48 MHz ( period = 14.188 ns )                    ; controller:inst19|X_Pos_sig[0]               ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 14.026 ns               ;
+; N/A                                     ; 70.49 MHz ( period = 14.186 ns )                    ; vga_controller:inst2|hc[6]                   ; Color_Mapper:inst|green_sig_1[9] ; clk        ; clk      ; None                        ; None                      ; 13.911 ns               ;
+; N/A                                     ; 70.50 MHz ( period = 14.185 ns )                    ; Color_Mapper:inst|flow7_y[0][3]              ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.094 ns               ;
+; N/A                                     ; 70.51 MHz ( period = 14.183 ns )                    ; vga_controller:inst2|hc[5]                   ; Color_Mapper:inst|green_sig_1[9] ; clk        ; clk      ; None                        ; None                      ; 13.926 ns               ;
+; N/A                                     ; 70.51 MHz ( period = 14.183 ns )                    ; Color_Mapper:inst|valid_coords_storage[9][3] ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.062 ns               ;
+; N/A                                     ; 70.51 MHz ( period = 14.182 ns )                    ; Color_Mapper:inst|flow5_x[2][4]              ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.105 ns               ;
+; N/A                                     ; 70.52 MHz ( period = 14.180 ns )                    ; Color_Mapper:inst|flow10_y[0][5]             ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.066 ns               ;
+; N/A                                     ; 70.56 MHz ( period = 14.172 ns )                    ; Color_Mapper:inst|valid_coords_storage[3][5] ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.073 ns               ;
+; N/A                                     ; 70.59 MHz ( period = 14.167 ns )                    ; single_reg_unit:inst16|reg_value_y[14][9]    ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 13.925 ns               ;
+; N/A                                     ; 70.59 MHz ( period = 14.167 ns )                    ; Color_Mapper:inst|flow4_x[0][0]              ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.092 ns               ;
+; N/A                                     ; 70.59 MHz ( period = 14.166 ns )                    ; vga_controller:inst2|vc[1]                   ; Color_Mapper:inst|green_sig_1[9] ; clk        ; clk      ; None                        ; None                      ; 13.918 ns               ;
+; N/A                                     ; 70.60 MHz ( period = 14.165 ns )                    ; vga_controller:inst2|vc[9]                   ; Color_Mapper:inst|red_sig_1[4]   ; clk        ; clk      ; None                        ; None                      ; 13.927 ns               ;
+; N/A                                     ; 70.61 MHz ( period = 14.162 ns )                    ; vga_controller:inst2|vc[0]                   ; Color_Mapper:inst|blue_sig_1[4]  ; clk        ; clk      ; None                        ; None                      ; 13.895 ns               ;
+; N/A                                     ; 70.62 MHz ( period = 14.161 ns )                    ; Color_Mapper:inst|flow6_y[3][4]              ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.053 ns               ;
+; N/A                                     ; 70.63 MHz ( period = 14.158 ns )                    ; Color_Mapper:inst|flow10_y[1][8]             ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.058 ns               ;
+; N/A                                     ; 70.65 MHz ( period = 14.154 ns )                    ; vga_controller:inst2|vc[0]                   ; Color_Mapper:inst|blue_sig_1[2]  ; clk        ; clk      ; None                        ; None                      ; 13.881 ns               ;
+; N/A                                     ; 70.66 MHz ( period = 14.152 ns )                    ; vga_controller:inst2|hc[6]                   ; Color_Mapper:inst|blue_sig_1[4]  ; clk        ; clk      ; None                        ; None                      ; 13.881 ns               ;
+; N/A                                     ; 70.67 MHz ( period = 14.150 ns )                    ; Color_Mapper:inst|valid_coords_storage[9][1] ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.029 ns               ;
+; N/A                                     ; 70.69 MHz ( period = 14.147 ns )                    ; controller:inst19|X_Pos_sig[1]               ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 14.004 ns               ;
+; N/A                                     ; 70.74 MHz ( period = 14.137 ns )                    ; vga_controller:inst2|hc[3]                   ; Color_Mapper:inst|blue_sig_1[2]  ; clk        ; clk      ; None                        ; None                      ; 13.878 ns               ;
+; N/A                                     ; 70.76 MHz ( period = 14.133 ns )                    ; vga_controller:inst2|vc[1]                   ; Color_Mapper:inst|blue_sig_1[4]  ; clk        ; clk      ; None                        ; None                      ; 13.889 ns               ;
+; N/A                                     ; 70.76 MHz ( period = 14.132 ns )                    ; Color_Mapper:inst|flow11_x[11][3]            ; Color_Mapper:inst|red_sig_1[2]   ; clk        ; clk      ; None                        ; None                      ; 14.061 ns               ;
+; N/A                                     ; 70.78 MHz ( period = 14.128 ns )                    ; controller:inst19|Y_Pos_sig[0]               ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 13.973 ns               ;
+; N/A                                     ; 70.78 MHz ( period = 14.128 ns )                    ; vga_controller:inst2|hc[5]                   ; Color_Mapper:inst|blue_sig_1[4]  ; clk        ; clk      ; None                        ; None                      ; 13.875 ns               ;
+; N/A                                     ; 70.80 MHz ( period = 14.124 ns )                    ; Color_Mapper:inst|flow8_y[1][1]              ; Color_Mapper:inst|str_flag       ; clk        ; clk      ; None                        ; None                      ; 13.911 ns               ;
+; N/A                                     ; 70.81 MHz ( period = 14.122 ns )                    ; vga_controller:inst2|hc[2]                   ; Color_Mapper:inst|blue_sig_1[4]  ; clk        ; clk      ; None                        ; None                      ; 13.869 ns               ;
+; N/A                                     ; 70.82 MHz ( period = 14.121 ns )                    ; vga_controller:inst2|hc[4]                   ; Color_Mapper:inst|blue_sig_1[2]  ; clk        ; clk      ; None                        ; None                      ; 13.861 ns               ;
+; N/A                                     ; 70.84 MHz ( period = 14.117 ns )                    ; Color_Mapper:inst|flow5_x[2][5]              ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.040 ns               ;
+; N/A                                     ; 70.87 MHz ( period = 14.111 ns )                    ; Color_Mapper:inst|flow3_y[0][3]              ; Color_Mapper:inst|red_sig_1[9]   ; clk        ; clk      ; None                        ; None                      ; 14.001 ns               ;
+; Timing analysis restricted to 200 rows. ; To change the limit use Settings (Assignments menu) ;                                              ;                                  ;            ;          ;                             ;                           ;                         ;
++-----------------------------------------+-----------------------------------------------------+----------------------------------------------+----------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; tsu                                                                                                                                                               ;
++-----------------------------------------+-----------------------------------------------------+------------+-------+-----------------------------------+----------+
+; Slack                                   ; Required tsu                                        ; Actual tsu ; From  ; To                                ; To Clock ;
++-----------------------------------------+-----------------------------------------------------+------------+-------+-----------------------------------+----------+
+; N/A                                     ; None                                                ; 10.784 ns  ; reset ; Color_Mapper:inst|flow7_x[5][5]   ; clk      ;
+; N/A                                     ; None                                                ; 10.691 ns  ; reset ; Color_Mapper:inst|flow3_x[7][2]   ; clk      ;
+; N/A                                     ; None                                                ; 10.611 ns  ; reset ; Color_Mapper:inst|flow2_y[4][8]   ; clk      ;
+; N/A                                     ; None                                                ; 10.587 ns  ; reset ; Color_Mapper:inst|flow7_x[5][8]   ; clk      ;
+; N/A                                     ; None                                                ; 10.410 ns  ; reset ; Color_Mapper:inst|flow3_x[7][3]   ; clk      ;
+; N/A                                     ; None                                                ; 10.281 ns  ; reset ; Color_Mapper:inst|flow3_y[11][8]  ; clk      ;
+; N/A                                     ; None                                                ; 10.263 ns  ; reset ; Color_Mapper:inst|flow10_x[5][5]  ; clk      ;
+; N/A                                     ; None                                                ; 10.244 ns  ; reset ; Color_Mapper:inst|flow1_x[14][2]  ; clk      ;
+; N/A                                     ; None                                                ; 10.183 ns  ; reset ; Color_Mapper:inst|flow10_y[5][6]  ; clk      ;
+; N/A                                     ; None                                                ; 10.183 ns  ; reset ; Color_Mapper:inst|flow9_y[3][6]   ; clk      ;
+; N/A                                     ; None                                                ; 10.125 ns  ; reset ; Color_Mapper:inst|flow7_x[5][7]   ; clk      ;
+; N/A                                     ; None                                                ; 10.061 ns  ; reset ; Color_Mapper:inst|flow1_y[7][1]   ; clk      ;
+; N/A                                     ; None                                                ; 10.052 ns  ; reset ; Color_Mapper:inst|flow1_x[16][7]  ; clk      ;
+; N/A                                     ; None                                                ; 10.016 ns  ; reset ; Color_Mapper:inst|flow7_x[11][8]  ; clk      ;
+; N/A                                     ; None                                                ; 9.998 ns   ; reset ; Color_Mapper:inst|flow10_x[19][5] ; clk      ;
+; N/A                                     ; None                                                ; 9.972 ns   ; reset ; Color_Mapper:inst|flow3_x[7][4]   ; clk      ;
+; N/A                                     ; None                                                ; 9.949 ns   ; reset ; Color_Mapper:inst|flow8_x[11][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.946 ns   ; reset ; Color_Mapper:inst|flow9_x[6][2]   ; clk      ;
+; N/A                                     ; None                                                ; 9.931 ns   ; reset ; Color_Mapper:inst|flow3_x[7][6]   ; clk      ;
+; N/A                                     ; None                                                ; 9.930 ns   ; reset ; Color_Mapper:inst|flow9_x[9][8]   ; clk      ;
+; N/A                                     ; None                                                ; 9.913 ns   ; reset ; Color_Mapper:inst|flow3_x[7][5]   ; clk      ;
+; N/A                                     ; None                                                ; 9.907 ns   ; reset ; Color_Mapper:inst|flow1_y[2][6]   ; clk      ;
+; N/A                                     ; None                                                ; 9.894 ns   ; reset ; Color_Mapper:inst|flow3_x[11][6]  ; clk      ;
+; N/A                                     ; None                                                ; 9.884 ns   ; reset ; Color_Mapper:inst|flow3_x[11][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.883 ns   ; reset ; Color_Mapper:inst|flow7_y[7][7]   ; clk      ;
+; N/A                                     ; None                                                ; 9.854 ns   ; reset ; Color_Mapper:inst|flow7_y[12][7]  ; clk      ;
+; N/A                                     ; None                                                ; 9.848 ns   ; reset ; Color_Mapper:inst|flow9_x[6][3]   ; clk      ;
+; N/A                                     ; None                                                ; 9.839 ns   ; reset ; Color_Mapper:inst|flow3_y[7][1]   ; clk      ;
+; N/A                                     ; None                                                ; 9.832 ns   ; reset ; Color_Mapper:inst|flow7_x[11][2]  ; clk      ;
+; N/A                                     ; None                                                ; 9.816 ns   ; reset ; Color_Mapper:inst|flow10_x[19][6] ; clk      ;
+; N/A                                     ; None                                                ; 9.816 ns   ; reset ; Color_Mapper:inst|flow10_x[5][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.810 ns   ; reset ; Color_Mapper:inst|flow3_y[7][9]   ; clk      ;
+; N/A                                     ; None                                                ; 9.801 ns   ; reset ; Color_Mapper:inst|flow3_x[16][7]  ; clk      ;
+; N/A                                     ; None                                                ; 9.797 ns   ; reset ; Color_Mapper:inst|flow3_x[16][2]  ; clk      ;
+; N/A                                     ; None                                                ; 9.796 ns   ; reset ; Color_Mapper:inst|flow3_y[17][0]  ; clk      ;
+; N/A                                     ; None                                                ; 9.789 ns   ; reset ; Color_Mapper:inst|flow9_x[4][7]   ; clk      ;
+; N/A                                     ; None                                                ; 9.777 ns   ; reset ; Color_Mapper:inst|flow9_y[10][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.776 ns   ; reset ; Color_Mapper:inst|flow3_y[17][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.762 ns   ; reset ; Color_Mapper:inst|flow10_y[7][5]  ; clk      ;
+; N/A                                     ; None                                                ; 9.703 ns   ; reset ; Color_Mapper:inst|flow7_y[8][2]   ; clk      ;
+; N/A                                     ; None                                                ; 9.693 ns   ; reset ; Color_Mapper:inst|flow10_x[5][6]  ; clk      ;
+; N/A                                     ; None                                                ; 9.685 ns   ; reset ; Color_Mapper:inst|flow5_y[7][9]   ; clk      ;
+; N/A                                     ; None                                                ; 9.680 ns   ; reset ; Color_Mapper:inst|flow5_y[14][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.671 ns   ; reset ; Color_Mapper:inst|flow2_x[11][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.661 ns   ; reset ; Color_Mapper:inst|flow3_y[11][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.657 ns   ; reset ; Color_Mapper:inst|flow5_y[11][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.657 ns   ; reset ; Color_Mapper:inst|flow3_x[13][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.657 ns   ; reset ; Color_Mapper:inst|flow10_y[5][8]  ; clk      ;
+; N/A                                     ; None                                                ; 9.646 ns   ; reset ; Color_Mapper:inst|flow3_x[11][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.636 ns   ; reset ; Color_Mapper:inst|flow2_x[11][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.635 ns   ; reset ; Color_Mapper:inst|flow5_x[11][8]  ; clk      ;
+; N/A                                     ; None                                                ; 9.632 ns   ; reset ; Color_Mapper:inst|flow3_x[11][8]  ; clk      ;
+; N/A                                     ; None                                                ; 9.629 ns   ; reset ; Color_Mapper:inst|flow3_x[11][5]  ; clk      ;
+; N/A                                     ; None                                                ; 9.625 ns   ; reset ; Color_Mapper:inst|flow3_x[3][3]   ; clk      ;
+; N/A                                     ; None                                                ; 9.616 ns   ; reset ; Color_Mapper:inst|flow3_y[17][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.611 ns   ; reset ; Color_Mapper:inst|flow3_y[17][2]  ; clk      ;
+; N/A                                     ; None                                                ; 9.606 ns   ; reset ; Color_Mapper:inst|flow2_y[11][7]  ; clk      ;
+; N/A                                     ; None                                                ; 9.595 ns   ; reset ; Color_Mapper:inst|flow10_y[3][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.592 ns   ; reset ; Color_Mapper:inst|flow3_y[17][5]  ; clk      ;
+; N/A                                     ; None                                                ; 9.592 ns   ; reset ; Color_Mapper:inst|flow3_y[7][4]   ; clk      ;
+; N/A                                     ; None                                                ; 9.584 ns   ; reset ; Color_Mapper:inst|flow1_y[3][7]   ; clk      ;
+; N/A                                     ; None                                                ; 9.582 ns   ; reset ; Color_Mapper:inst|flow9_y[11][8]  ; clk      ;
+; N/A                                     ; None                                                ; 9.575 ns   ; reset ; Color_Mapper:inst|flow9_y[3][7]   ; clk      ;
+; N/A                                     ; None                                                ; 9.570 ns   ; reset ; Color_Mapper:inst|flow8_x[9][1]   ; clk      ;
+; N/A                                     ; None                                                ; 9.565 ns   ; reset ; Color_Mapper:inst|flow3_x[16][8]  ; clk      ;
+; N/A                                     ; None                                                ; 9.563 ns   ; reset ; Color_Mapper:inst|flow3_y[7][8]   ; clk      ;
+; N/A                                     ; None                                                ; 9.558 ns   ; reset ; Color_Mapper:inst|flow7_x[5][0]   ; clk      ;
+; N/A                                     ; None                                                ; 9.553 ns   ; reset ; Color_Mapper:inst|flow10_y[1][0]  ; clk      ;
+; N/A                                     ; None                                                ; 9.549 ns   ; reset ; Color_Mapper:inst|flow1_x[9][5]   ; clk      ;
+; N/A                                     ; None                                                ; 9.546 ns   ; reset ; Color_Mapper:inst|flow3_x[7][1]   ; clk      ;
+; N/A                                     ; None                                                ; 9.539 ns   ; reset ; Color_Mapper:inst|flow1_x[9][8]   ; clk      ;
+; N/A                                     ; None                                                ; 9.539 ns   ; reset ; Color_Mapper:inst|flow7_x[7][2]   ; clk      ;
+; N/A                                     ; None                                                ; 9.537 ns   ; reset ; Color_Mapper:inst|flow10_y[5][7]  ; clk      ;
+; N/A                                     ; None                                                ; 9.532 ns   ; reset ; Color_Mapper:inst|flow7_x[5][6]   ; clk      ;
+; N/A                                     ; None                                                ; 9.525 ns   ; reset ; Color_Mapper:inst|flow8_x[9][5]   ; clk      ;
+; N/A                                     ; None                                                ; 9.517 ns   ; reset ; Color_Mapper:inst|flow10_y[5][9]  ; clk      ;
+; N/A                                     ; None                                                ; 9.516 ns   ; reset ; Color_Mapper:inst|flow10_x[6][5]  ; clk      ;
+; N/A                                     ; None                                                ; 9.511 ns   ; reset ; Color_Mapper:inst|flow1_y[3][0]   ; clk      ;
+; N/A                                     ; None                                                ; 9.508 ns   ; reset ; Color_Mapper:inst|flow3_y[11][6]  ; clk      ;
+; N/A                                     ; None                                                ; 9.499 ns   ; reset ; Color_Mapper:inst|flow8_x[9][4]   ; clk      ;
+; N/A                                     ; None                                                ; 9.496 ns   ; reset ; Color_Mapper:inst|flow3_y[11][7]  ; clk      ;
+; N/A                                     ; None                                                ; 9.494 ns   ; reset ; Color_Mapper:inst|flow8_x[9][8]   ; clk      ;
+; N/A                                     ; None                                                ; 9.493 ns   ; reset ; Color_Mapper:inst|flow3_y[11][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.474 ns   ; reset ; Color_Mapper:inst|flow1_y[11][8]  ; clk      ;
+; N/A                                     ; None                                                ; 9.471 ns   ; reset ; Color_Mapper:inst|flow3_x[16][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.461 ns   ; reset ; Color_Mapper:inst|flow3_y[9][3]   ; clk      ;
+; N/A                                     ; None                                                ; 9.461 ns   ; reset ; Color_Mapper:inst|flow3_x[16][5]  ; clk      ;
+; N/A                                     ; None                                                ; 9.453 ns   ; reset ; Color_Mapper:inst|flow10_y[11][9] ; clk      ;
+; N/A                                     ; None                                                ; 9.451 ns   ; reset ; Color_Mapper:inst|flow1_x[16][5]  ; clk      ;
+; N/A                                     ; None                                                ; 9.449 ns   ; reset ; Color_Mapper:inst|flow1_x[16][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.448 ns   ; reset ; Color_Mapper:inst|flow1_x[3][3]   ; clk      ;
+; N/A                                     ; None                                                ; 9.447 ns   ; reset ; Color_Mapper:inst|flow8_y[8][6]   ; clk      ;
+; N/A                                     ; None                                                ; 9.445 ns   ; reset ; Color_Mapper:inst|flow3_y[7][6]   ; clk      ;
+; N/A                                     ; None                                                ; 9.437 ns   ; reset ; Color_Mapper:inst|flow3_y[7][3]   ; clk      ;
+; N/A                                     ; None                                                ; 9.437 ns   ; reset ; Color_Mapper:inst|flow1_x[16][2]  ; clk      ;
+; N/A                                     ; None                                                ; 9.436 ns   ; reset ; Color_Mapper:inst|flow10_x[11][1] ; clk      ;
+; N/A                                     ; None                                                ; 9.435 ns   ; reset ; Color_Mapper:inst|flow1_x[16][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.433 ns   ; reset ; Color_Mapper:inst|flow10_x[7][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.432 ns   ; reset ; Color_Mapper:inst|flow1_x[16][6]  ; clk      ;
+; N/A                                     ; None                                                ; 9.430 ns   ; reset ; Color_Mapper:inst|flow9_y[6][9]   ; clk      ;
+; N/A                                     ; None                                                ; 9.430 ns   ; reset ; Color_Mapper:inst|flow1_x[16][8]  ; clk      ;
+; N/A                                     ; None                                                ; 9.428 ns   ; reset ; Color_Mapper:inst|flow10_x[11][3] ; clk      ;
+; N/A                                     ; None                                                ; 9.426 ns   ; reset ; Color_Mapper:inst|flow3_y[11][9]  ; clk      ;
+; N/A                                     ; None                                                ; 9.423 ns   ; reset ; Color_Mapper:inst|flow5_y[11][6]  ; clk      ;
+; N/A                                     ; None                                                ; 9.422 ns   ; reset ; Color_Mapper:inst|flow5_y[11][5]  ; clk      ;
+; N/A                                     ; None                                                ; 9.417 ns   ; reset ; Color_Mapper:inst|flow1_y[7][7]   ; clk      ;
+; N/A                                     ; None                                                ; 9.416 ns   ; reset ; Color_Mapper:inst|flow5_y[11][1]  ; clk      ;
+; N/A                                     ; None                                                ; 9.414 ns   ; reset ; Color_Mapper:inst|flow8_x[9][6]   ; clk      ;
+; N/A                                     ; None                                                ; 9.413 ns   ; reset ; Color_Mapper:inst|flow3_x[13][7]  ; clk      ;
+; N/A                                     ; None                                                ; 9.408 ns   ; reset ; Color_Mapper:inst|flow5_y[11][7]  ; clk      ;
+; N/A                                     ; None                                                ; 9.404 ns   ; reset ; Color_Mapper:inst|flow10_x[19][4] ; clk      ;
+; N/A                                     ; None                                                ; 9.403 ns   ; reset ; Color_Mapper:inst|flow9_y[5][0]   ; clk      ;
+; N/A                                     ; None                                                ; 9.385 ns   ; reset ; Color_Mapper:inst|flow1_y[3][5]   ; clk      ;
+; N/A                                     ; None                                                ; 9.384 ns   ; reset ; Color_Mapper:inst|flow6_y[6][4]   ; clk      ;
+; N/A                                     ; None                                                ; 9.384 ns   ; reset ; Color_Mapper:inst|flow2_y[5][4]   ; clk      ;
+; N/A                                     ; None                                                ; 9.383 ns   ; reset ; Color_Mapper:inst|flow1_x[5][3]   ; clk      ;
+; N/A                                     ; None                                                ; 9.377 ns   ; reset ; Color_Mapper:inst|flow5_y[11][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.364 ns   ; reset ; Color_Mapper:inst|flow8_y[5][8]   ; clk      ;
+; N/A                                     ; None                                                ; 9.362 ns   ; reset ; Color_Mapper:inst|flow10_x[19][2] ; clk      ;
+; N/A                                     ; None                                                ; 9.362 ns   ; reset ; Color_Mapper:inst|flow2_y[11][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.361 ns   ; reset ; Color_Mapper:inst|flow3_y[25][9]  ; clk      ;
+; N/A                                     ; None                                                ; 9.360 ns   ; reset ; Color_Mapper:inst|flow1_x[19][7]  ; clk      ;
+; N/A                                     ; None                                                ; 9.354 ns   ; reset ; Color_Mapper:inst|flow10_y[12][4] ; clk      ;
+; N/A                                     ; None                                                ; 9.346 ns   ; reset ; Color_Mapper:inst|flow1_x[3][5]   ; clk      ;
+; N/A                                     ; None                                                ; 9.344 ns   ; reset ; Color_Mapper:inst|flow3_y[11][5]  ; clk      ;
+; N/A                                     ; None                                                ; 9.336 ns   ; reset ; Color_Mapper:inst|flow1_x[19][6]  ; clk      ;
+; N/A                                     ; None                                                ; 9.335 ns   ; reset ; Color_Mapper:inst|flow1_x[19][8]  ; clk      ;
+; N/A                                     ; None                                                ; 9.328 ns   ; reset ; Color_Mapper:inst|flow8_x[11][7]  ; clk      ;
+; N/A                                     ; None                                                ; 9.314 ns   ; reset ; Color_Mapper:inst|flow2_x[11][7]  ; clk      ;
+; N/A                                     ; None                                                ; 9.314 ns   ; reset ; Color_Mapper:inst|flow5_x[1][3]   ; clk      ;
+; N/A                                     ; None                                                ; 9.310 ns   ; reset ; Color_Mapper:inst|flow7_y[12][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.310 ns   ; reset ; Color_Mapper:inst|flow8_x[11][5]  ; clk      ;
+; N/A                                     ; None                                                ; 9.308 ns   ; reset ; Color_Mapper:inst|flow9_x[11][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.307 ns   ; reset ; Color_Mapper:inst|flow3_y[7][5]   ; clk      ;
+; N/A                                     ; None                                                ; 9.305 ns   ; reset ; Color_Mapper:inst|flow7_x[11][0]  ; clk      ;
+; N/A                                     ; None                                                ; 9.300 ns   ; reset ; Color_Mapper:inst|flow8_y[11][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.299 ns   ; reset ; Color_Mapper:inst|flow1_y[6][1]   ; clk      ;
+; N/A                                     ; None                                                ; 9.299 ns   ; reset ; Color_Mapper:inst|flow3_x[13][8]  ; clk      ;
+; N/A                                     ; None                                                ; 9.297 ns   ; reset ; Color_Mapper:inst|flow7_y[17][8]  ; clk      ;
+; N/A                                     ; None                                                ; 9.296 ns   ; reset ; Color_Mapper:inst|flow9_x[4][6]   ; clk      ;
+; N/A                                     ; None                                                ; 9.295 ns   ; reset ; Color_Mapper:inst|flow8_x[11][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.287 ns   ; reset ; Color_Mapper:inst|flow1_x[9][9]   ; clk      ;
+; N/A                                     ; None                                                ; 9.286 ns   ; reset ; Color_Mapper:inst|flow2_y[17][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.284 ns   ; reset ; Color_Mapper:inst|flow3_x[14][2]  ; clk      ;
+; N/A                                     ; None                                                ; 9.283 ns   ; reset ; Color_Mapper:inst|flow8_x[9][3]   ; clk      ;
+; N/A                                     ; None                                                ; 9.282 ns   ; reset ; Color_Mapper:inst|flow3_x[7][7]   ; clk      ;
+; N/A                                     ; None                                                ; 9.279 ns   ; reset ; Color_Mapper:inst|flow10_y[8][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.278 ns   ; reset ; Color_Mapper:inst|flow8_x[9][9]   ; clk      ;
+; N/A                                     ; None                                                ; 9.273 ns   ; reset ; Color_Mapper:inst|flow1_x[9][7]   ; clk      ;
+; N/A                                     ; None                                                ; 9.272 ns   ; reset ; Color_Mapper:inst|flow1_x[9][4]   ; clk      ;
+; N/A                                     ; None                                                ; 9.272 ns   ; reset ; Color_Mapper:inst|flow3_y[16][1]  ; clk      ;
+; N/A                                     ; None                                                ; 9.269 ns   ; reset ; Color_Mapper:inst|flow5_y[8][8]   ; clk      ;
+; N/A                                     ; None                                                ; 9.263 ns   ; reset ; Color_Mapper:inst|flow3_y[17][6]  ; clk      ;
+; N/A                                     ; None                                                ; 9.263 ns   ; reset ; Color_Mapper:inst|flow3_x[16][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.261 ns   ; reset ; Color_Mapper:inst|flow7_y[7][8]   ; clk      ;
+; N/A                                     ; None                                                ; 9.259 ns   ; reset ; Color_Mapper:inst|flow5_y[9][4]   ; clk      ;
+; N/A                                     ; None                                                ; 9.258 ns   ; reset ; Color_Mapper:inst|flow1_y[11][7]  ; clk      ;
+; N/A                                     ; None                                                ; 9.256 ns   ; reset ; Color_Mapper:inst|flow10_y[11][8] ; clk      ;
+; N/A                                     ; None                                                ; 9.256 ns   ; reset ; Color_Mapper:inst|flow7_x[7][7]   ; clk      ;
+; N/A                                     ; None                                                ; 9.253 ns   ; reset ; Color_Mapper:inst|flow3_x[13][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.252 ns   ; reset ; Color_Mapper:inst|flow1_x[11][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.252 ns   ; reset ; Color_Mapper:inst|flow7_y[3][8]   ; clk      ;
+; N/A                                     ; None                                                ; 9.247 ns   ; reset ; Color_Mapper:inst|flow7_x[8][5]   ; clk      ;
+; N/A                                     ; None                                                ; 9.246 ns   ; reset ; Color_Mapper:inst|flow10_x[19][3] ; clk      ;
+; N/A                                     ; None                                                ; 9.241 ns   ; reset ; Color_Mapper:inst|flow3_x[7][9]   ; clk      ;
+; N/A                                     ; None                                                ; 9.241 ns   ; reset ; Color_Mapper:inst|flow2_y[17][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.237 ns   ; reset ; Color_Mapper:inst|flow8_y[11][5]  ; clk      ;
+; N/A                                     ; None                                                ; 9.236 ns   ; reset ; Color_Mapper:inst|flow1_x[4][0]   ; clk      ;
+; N/A                                     ; None                                                ; 9.233 ns   ; reset ; Color_Mapper:inst|flow2_x[7][9]   ; clk      ;
+; N/A                                     ; None                                                ; 9.232 ns   ; reset ; Color_Mapper:inst|flow7_x[6][0]   ; clk      ;
+; N/A                                     ; None                                                ; 9.230 ns   ; reset ; Color_Mapper:inst|flow3_x[11][2]  ; clk      ;
+; N/A                                     ; None                                                ; 9.230 ns   ; reset ; Color_Mapper:inst|flow8_x[9][7]   ; clk      ;
+; N/A                                     ; None                                                ; 9.229 ns   ; reset ; Color_Mapper:inst|flow7_x[11][1]  ; clk      ;
+; N/A                                     ; None                                                ; 9.229 ns   ; reset ; Color_Mapper:inst|flow8_y[6][5]   ; clk      ;
+; N/A                                     ; None                                                ; 9.229 ns   ; reset ; Color_Mapper:inst|flow3_x[16][6]  ; clk      ;
+; N/A                                     ; None                                                ; 9.225 ns   ; reset ; Color_Mapper:inst|flow1_y[11][6]  ; clk      ;
+; N/A                                     ; None                                                ; 9.224 ns   ; reset ; Color_Mapper:inst|flow1_x[3][2]   ; clk      ;
+; N/A                                     ; None                                                ; 9.218 ns   ; reset ; Color_Mapper:inst|flow10_y[11][5] ; clk      ;
+; N/A                                     ; None                                                ; 9.215 ns   ; reset ; Color_Mapper:inst|flow1_x[4][3]   ; clk      ;
+; N/A                                     ; None                                                ; 9.210 ns   ; reset ; Color_Mapper:inst|flow2_x[11][5]  ; clk      ;
+; N/A                                     ; None                                                ; 9.209 ns   ; reset ; Color_Mapper:inst|flow1_x[3][4]   ; clk      ;
+; N/A                                     ; None                                                ; 9.208 ns   ; reset ; Color_Mapper:inst|flow1_x[7][0]   ; clk      ;
+; N/A                                     ; None                                                ; 9.206 ns   ; reset ; Color_Mapper:inst|flow1_x[7][7]   ; clk      ;
+; N/A                                     ; None                                                ; 9.203 ns   ; reset ; Color_Mapper:inst|flow3_y[9][6]   ; clk      ;
+; N/A                                     ; None                                                ; 9.203 ns   ; reset ; Color_Mapper:inst|flow1_y[11][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.195 ns   ; reset ; Color_Mapper:inst|flow1_y[11][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.193 ns   ; reset ; Color_Mapper:inst|flow10_x[11][7] ; clk      ;
+; N/A                                     ; None                                                ; 9.192 ns   ; reset ; Color_Mapper:inst|flow7_x[11][4]  ; clk      ;
+; N/A                                     ; None                                                ; 9.191 ns   ; reset ; Color_Mapper:inst|flow6_y[6][3]   ; clk      ;
+; N/A                                     ; None                                                ; 9.189 ns   ; reset ; Color_Mapper:inst|flow2_y[11][5]  ; clk      ;
+; N/A                                     ; None                                                ; 9.189 ns   ; reset ; Color_Mapper:inst|flow10_y[13][2] ; clk      ;
+; N/A                                     ; None                                                ; 9.188 ns   ; reset ; Color_Mapper:inst|flow1_y[7][8]   ; clk      ;
+; N/A                                     ; None                                                ; 9.187 ns   ; reset ; Color_Mapper:inst|flow2_y[11][0]  ; clk      ;
+; N/A                                     ; None                                                ; 9.186 ns   ; reset ; Color_Mapper:inst|flow10_x[8][3]  ; clk      ;
+; N/A                                     ; None                                                ; 9.185 ns   ; reset ; Color_Mapper:inst|flow2_y[17][6]  ; clk      ;
+; N/A                                     ; None                                                ; 9.183 ns   ; reset ; Color_Mapper:inst|flow2_x[7][3]   ; clk      ;
+; N/A                                     ; None                                                ; 9.182 ns   ; reset ; Color_Mapper:inst|flow10_y[1][1]  ; clk      ;
+; N/A                                     ; None                                                ; 9.181 ns   ; reset ; Color_Mapper:inst|flow8_y[5][7]   ; clk      ;
+; N/A                                     ; None                                                ; 9.177 ns   ; reset ; Color_Mapper:inst|flow9_y[7][7]   ; clk      ;
+; N/A                                     ; None                                                ; 9.173 ns   ; reset ; Color_Mapper:inst|flow9_y[5][1]   ; clk      ;
+; Timing analysis restricted to 200 rows. ; To change the limit use Settings (Assignments menu) ;            ;       ;                                   ;          ;
++-----------------------------------------+-----------------------------------------------------+------------+-------+-----------------------------------+----------+
+
+
++---------------------------------------------------------------------------------------------------------+
+; tco                                                                                                     ;
++-------+--------------+------------+---------------------------------------+----------------+------------+
+; Slack ; Required tco ; Actual tco ; From                                  ; To             ; From Clock ;
++-------+--------------+------------+---------------------------------------+----------------+------------+
+; N/A   ; None         ; 16.164 ns  ; vga_controller:inst2|vc[6]            ; blank          ; clk        ;
+; N/A   ; None         ; 16.134 ns  ; vga_controller:inst2|vc[7]            ; blank          ; clk        ;
+; N/A   ; None         ; 16.092 ns  ; vga_controller:inst2|vc[5]            ; blank          ; clk        ;
+; N/A   ; None         ; 14.842 ns  ; vga_controller:inst2|hc[9]            ; blank          ; clk        ;
+; N/A   ; None         ; 14.681 ns  ; vga_controller:inst2|hc[8]            ; blank          ; clk        ;
+; N/A   ; None         ; 14.602 ns  ; vga_controller:inst2|vc[9]            ; blank          ; clk        ;
+; N/A   ; None         ; 14.549 ns  ; vga_controller:inst2|hc[7]            ; blank          ; clk        ;
+; N/A   ; None         ; 14.150 ns  ; vga_controller:inst2|vc[8]            ; blank          ; clk        ;
+; N/A   ; None         ; 13.238 ns  ; logic_control:inst3|flow_count[2]     ; hex[4]         ; clk        ;
+; N/A   ; None         ; 13.201 ns  ; logic_control:inst3|flow_count[3]     ; hex[4]         ; clk        ;
+; N/A   ; None         ; 13.197 ns  ; logic_control:inst3|flow_count[0]     ; hex[4]         ; clk        ;
+; N/A   ; None         ; 13.142 ns  ; logic_control:inst3|flow_count[3]     ; hex[1]         ; clk        ;
+; N/A   ; None         ; 13.099 ns  ; logic_control:inst3|flow_count[0]     ; hex[1]         ; clk        ;
+; N/A   ; None         ; 12.961 ns  ; logic_control:inst3|flow_count[2]     ; hex[1]         ; clk        ;
+; N/A   ; None         ; 12.903 ns  ; logic_control:inst3|flow_count[1]     ; hex[4]         ; clk        ;
+; N/A   ; None         ; 12.888 ns  ; logic_control:inst3|flow_count[3]     ; hex[5]         ; clk        ;
+; N/A   ; None         ; 12.842 ns  ; logic_control:inst3|flow_count[0]     ; hex[5]         ; clk        ;
+; N/A   ; None         ; 12.816 ns  ; logic_control:inst3|flow_count[1]     ; hex[1]         ; clk        ;
+; N/A   ; None         ; 12.708 ns  ; logic_control:inst3|flow_count[2]     ; hex[5]         ; clk        ;
+; N/A   ; None         ; 12.648 ns  ; logic_control:inst3|flow_count[3]     ; hex[6]         ; clk        ;
+; N/A   ; None         ; 12.605 ns  ; logic_control:inst3|flow_count[0]     ; hex[6]         ; clk        ;
+; N/A   ; None         ; 12.563 ns  ; logic_control:inst3|flow_count[1]     ; hex[5]         ; clk        ;
+; N/A   ; None         ; 12.467 ns  ; logic_control:inst3|flow_count[2]     ; hex[6]         ; clk        ;
+; N/A   ; None         ; 12.466 ns  ; logic_control:inst3|flow_count[2]     ; hex[3]         ; clk        ;
+; N/A   ; None         ; 12.428 ns  ; logic_control:inst3|flow_count[0]     ; hex[3]         ; clk        ;
+; N/A   ; None         ; 12.402 ns  ; logic_control:inst3|flow_count[3]     ; hex[3]         ; clk        ;
+; N/A   ; None         ; 12.376 ns  ; vga_controller:inst2|vs               ; vs             ; clk        ;
+; N/A   ; None         ; 12.322 ns  ; logic_control:inst3|flow_count[1]     ; hex[6]         ; clk        ;
+; N/A   ; None         ; 12.278 ns  ; vga_controller:inst2|hs               ; hs             ; clk        ;
+; N/A   ; None         ; 12.271 ns  ; controller:inst19|space_sig           ; space          ; clk        ;
+; N/A   ; None         ; 12.165 ns  ; logic_control:inst3|valid_delete_flow ; valid_del_pipe ; clk        ;
+; N/A   ; None         ; 12.130 ns  ; logic_control:inst3|flow_count[1]     ; hex[3]         ; clk        ;
+; N/A   ; None         ; 11.914 ns  ; single_reg_unit:inst16|count[4]       ; coords[4]      ; clk        ;
+; N/A   ; None         ; 11.907 ns  ; logic_control:inst3|flow_count[2]     ; hex[0]         ; clk        ;
+; N/A   ; None         ; 11.872 ns  ; logic_control:inst3|flow_count[0]     ; hex[0]         ; clk        ;
+; N/A   ; None         ; 11.870 ns  ; logic_control:inst3|flow_count[3]     ; hex[0]         ; clk        ;
+; N/A   ; None         ; 11.627 ns  ; single_reg_unit:inst16|count[2]       ; coords[2]      ; clk        ;
+; N/A   ; None         ; 11.620 ns  ; single_reg_unit:inst16|count[0]       ; coords[0]      ; clk        ;
+; N/A   ; None         ; 11.600 ns  ; logic_control:inst3|flow_count[3]     ; hex[2]         ; clk        ;
+; N/A   ; None         ; 11.569 ns  ; logic_control:inst3|flow_count[1]     ; hex[0]         ; clk        ;
+; N/A   ; None         ; 11.561 ns  ; single_reg_unit:inst16|count[5]       ; coords[5]      ; clk        ;
+; N/A   ; None         ; 11.528 ns  ; logic_control:inst3|flow_count[0]     ; hex[2]         ; clk        ;
+; N/A   ; None         ; 11.517 ns  ; single_reg_unit:inst16|count[1]       ; coords[1]      ; clk        ;
+; N/A   ; None         ; 11.419 ns  ; logic_control:inst3|flow_count[2]     ; hex[2]         ; clk        ;
+; N/A   ; None         ; 11.274 ns  ; logic_control:inst3|flow_count[1]     ; hex[2]         ; clk        ;
+; N/A   ; None         ; 10.976 ns  ; single_reg_unit:inst16|count[3]       ; coords[3]      ; clk        ;
+; N/A   ; None         ; 10.885 ns  ; Color_Mapper:inst|Red[7]              ; Red[7]         ; clk        ;
+; N/A   ; None         ; 10.866 ns  ; Color_Mapper:inst|Blue[8]             ; Blue[8]        ; clk        ;
+; N/A   ; None         ; 10.831 ns  ; Color_Mapper:inst|Red[9]              ; Red[9]         ; clk        ;
+; N/A   ; None         ; 10.827 ns  ; Color_Mapper:inst|Red[4]              ; Red[4]         ; clk        ;
+; N/A   ; None         ; 10.824 ns  ; Color_Mapper:inst|Green[7]            ; Green[7]       ; clk        ;
+; N/A   ; None         ; 10.819 ns  ; Color_Mapper:inst|Red[3]              ; Red[3]         ; clk        ;
+; N/A   ; None         ; 10.817 ns  ; Color_Mapper:inst|Red[8]              ; Red[8]         ; clk        ;
+; N/A   ; None         ; 10.816 ns  ; Color_Mapper:inst|Blue[9]             ; Blue[9]        ; clk        ;
+; N/A   ; None         ; 10.803 ns  ; Color_Mapper:inst|Red[2]              ; Red[2]         ; clk        ;
+; N/A   ; None         ; 10.631 ns  ; Color_Mapper:inst|Blue[4]             ; Blue[4]        ; clk        ;
+; N/A   ; None         ; 10.608 ns  ; Color_Mapper:inst|Red[5]              ; Red[5]         ; clk        ;
+; N/A   ; None         ; 10.606 ns  ; Color_Mapper:inst|Green[9]            ; Green[9]       ; clk        ;
+; N/A   ; None         ; 10.602 ns  ; Color_Mapper:inst|Blue[5]             ; Blue[5]        ; clk        ;
+; N/A   ; None         ; 10.588 ns  ; Color_Mapper:inst|Green[4]            ; Green[4]       ; clk        ;
+; N/A   ; None         ; 10.584 ns  ; Color_Mapper:inst|Blue[3]             ; Blue[3]        ; clk        ;
+; N/A   ; None         ; 10.555 ns  ; Color_Mapper:inst|Blue[2]             ; Blue[2]        ; clk        ;
+; N/A   ; None         ; 10.540 ns  ; Color_Mapper:inst|Red[6]              ; Red[6]         ; clk        ;
+; N/A   ; None         ; 10.390 ns  ; Color_Mapper:inst|Green[2]            ; Green[2]       ; clk        ;
+; N/A   ; None         ; 10.365 ns  ; Color_Mapper:inst|Green[8]            ; Green[8]       ; clk        ;
+; N/A   ; None         ; 10.362 ns  ; Color_Mapper:inst|Green[3]            ; Green[3]       ; clk        ;
+; N/A   ; None         ; 10.340 ns  ; Color_Mapper:inst|Green[5]            ; Green[5]       ; clk        ;
+; N/A   ; None         ; 10.338 ns  ; clk_div:inst1|frame_clk_div[0]        ; VGA_clk        ; clk        ;
+; N/A   ; None         ; 10.301 ns  ; Color_Mapper:inst|Green[6]            ; Green[6]       ; clk        ;
+; N/A   ; None         ; 10.025 ns  ; Color_Mapper:inst|Blue[7]             ; Blue[7]        ; clk        ;
+; N/A   ; None         ; 10.023 ns  ; Color_Mapper:inst|Blue[6]             ; Blue[6]        ; clk        ;
++-------+--------------+------------+---------------------------------------+----------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; th                                                                                                                                                                    ;
++-----------------------------------------+-----------------------------------------------------+-----------+---------+--------------------------------------+----------+
+; Minimum Slack                           ; Required th                                         ; Actual th ; From    ; To                                   ; To Clock ;
++-----------------------------------------+-----------------------------------------------------+-----------+---------+--------------------------------------+----------+
+; N/A                                     ; None                                                ; -0.062 ns ; ps2data ; keyboardVhdl:inst25|shiftRegSig1[10] ; clk      ;
+; N/A                                     ; None                                                ; -0.069 ns ; ps2clk  ; keyboardVhdl:inst25|DFF1             ; clk      ;
+; N/A                                     ; None                                                ; -1.497 ns ; reset   ; controller:inst19|key_used_sig       ; clk      ;
+; N/A                                     ; None                                                ; -1.598 ns ; reset   ; keyboardVhdl:inst25|acceptNewKey     ; clk      ;
+; N/A                                     ; None                                                ; -2.096 ns ; reset   ; keyboardVhdl:inst25|keyCode[1]       ; clk      ;
+; N/A                                     ; None                                                ; -2.096 ns ; reset   ; keyboardVhdl:inst25|keyCode[3]       ; clk      ;
+; N/A                                     ; None                                                ; -2.096 ns ; reset   ; keyboardVhdl:inst25|keyCode[7]       ; clk      ;
+; N/A                                     ; None                                                ; -2.096 ns ; reset   ; keyboardVhdl:inst25|keyCode[5]       ; clk      ;
+; N/A                                     ; None                                                ; -2.096 ns ; reset   ; keyboardVhdl:inst25|keyCode[6]       ; clk      ;
+; N/A                                     ; None                                                ; -2.096 ns ; reset   ; keyboardVhdl:inst25|keyCode[4]       ; clk      ;
+; N/A                                     ; None                                                ; -2.096 ns ; reset   ; keyboardVhdl:inst25|keyCode[2]       ; clk      ;
+; N/A                                     ; None                                                ; -2.096 ns ; reset   ; keyboardVhdl:inst25|keyCode[0]       ; clk      ;
+; N/A                                     ; None                                                ; -2.096 ns ; reset   ; keyboardVhdl:inst25|newKey           ; clk      ;
+; N/A                                     ; None                                                ; -2.213 ns ; reset   ; controller:inst19|space_sig          ; clk      ;
+; N/A                                     ; None                                                ; -2.213 ns ; reset   ; controller:inst19|enter_sig          ; clk      ;
+; N/A                                     ; None                                                ; -2.823 ns ; reset   ; Color_Mapper:inst|flow4_y[22][1]     ; clk      ;
+; N/A                                     ; None                                                ; -3.066 ns ; reset   ; Color_Mapper:inst|flow0_y[23][8]     ; clk      ;
+; N/A                                     ; None                                                ; -3.080 ns ; reset   ; Color_Mapper:inst|flow11_y[15][8]    ; clk      ;
+; N/A                                     ; None                                                ; -3.145 ns ; reset   ; Color_Mapper:inst|flow4_y[23][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.147 ns ; reset   ; Color_Mapper:inst|flow4_y[23][8]     ; clk      ;
+; N/A                                     ; None                                                ; -3.148 ns ; reset   ; Color_Mapper:inst|flow0_y[23][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.184 ns ; reset   ; Color_Mapper:inst|flow4_x[24][8]     ; clk      ;
+; N/A                                     ; None                                                ; -3.186 ns ; reset   ; Color_Mapper:inst|flow0_x[24][5]     ; clk      ;
+; N/A                                     ; None                                                ; -3.186 ns ; reset   ; Color_Mapper:inst|flow0_x[24][3]     ; clk      ;
+; N/A                                     ; None                                                ; -3.189 ns ; reset   ; Color_Mapper:inst|flow4_x[24][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.230 ns ; reset   ; controller:inst19|Y_Pos_prev[0]      ; clk      ;
+; N/A                                     ; None                                                ; -3.230 ns ; reset   ; controller:inst19|Y_Pos_prev[1]      ; clk      ;
+; N/A                                     ; None                                                ; -3.230 ns ; reset   ; controller:inst19|Y_Pos_prev[4]      ; clk      ;
+; N/A                                     ; None                                                ; -3.230 ns ; reset   ; controller:inst19|Y_Pos_prev[2]      ; clk      ;
+; N/A                                     ; None                                                ; -3.230 ns ; reset   ; controller:inst19|Y_Pos_prev[3]      ; clk      ;
+; N/A                                     ; None                                                ; -3.330 ns ; reset   ; Color_Mapper:inst|flow4_y[14][0]     ; clk      ;
+; N/A                                     ; None                                                ; -3.419 ns ; reset   ; Color_Mapper:inst|flow4_x[0][0]      ; clk      ;
+; N/A                                     ; None                                                ; -3.438 ns ; reset   ; Color_Mapper:inst|flow4_x[2][1]      ; clk      ;
+; N/A                                     ; None                                                ; -3.438 ns ; reset   ; Color_Mapper:inst|flow4_x[2][0]      ; clk      ;
+; N/A                                     ; None                                                ; -3.438 ns ; reset   ; Color_Mapper:inst|flow4_x[2][4]      ; clk      ;
+; N/A                                     ; None                                                ; -3.451 ns ; reset   ; Color_Mapper:inst|flow0_x[24][2]     ; clk      ;
+; N/A                                     ; None                                                ; -3.453 ns ; reset   ; Color_Mapper:inst|flow0_x[24][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.454 ns ; reset   ; Color_Mapper:inst|flow0_x[24][8]     ; clk      ;
+; N/A                                     ; None                                                ; -3.472 ns ; reset   ; controller:inst19|Y_Pos_prev[6]      ; clk      ;
+; N/A                                     ; None                                                ; -3.472 ns ; reset   ; controller:inst19|X_Pos_prev[1]      ; clk      ;
+; N/A                                     ; None                                                ; -3.472 ns ; reset   ; controller:inst19|X_Pos_prev[0]      ; clk      ;
+; N/A                                     ; None                                                ; -3.472 ns ; reset   ; controller:inst19|X_Pos_prev[4]      ; clk      ;
+; N/A                                     ; None                                                ; -3.472 ns ; reset   ; controller:inst19|X_Pos_prev[5]      ; clk      ;
+; N/A                                     ; None                                                ; -3.475 ns ; reset   ; controller:inst19|X_Pos_prev[2]      ; clk      ;
+; N/A                                     ; None                                                ; -3.475 ns ; reset   ; controller:inst19|X_Pos_prev[3]      ; clk      ;
+; N/A                                     ; None                                                ; -3.475 ns ; reset   ; controller:inst19|X_Pos_prev[6]      ; clk      ;
+; N/A                                     ; None                                                ; -3.475 ns ; reset   ; controller:inst19|X_Pos_prev[7]      ; clk      ;
+; N/A                                     ; None                                                ; -3.475 ns ; reset   ; controller:inst19|X_Pos_prev[9]      ; clk      ;
+; N/A                                     ; None                                                ; -3.475 ns ; reset   ; controller:inst19|X_Pos_prev[8]      ; clk      ;
+; N/A                                     ; None                                                ; -3.485 ns ; reset   ; controller:inst19|Y_Pos_prev[9]      ; clk      ;
+; N/A                                     ; None                                                ; -3.485 ns ; reset   ; controller:inst19|Y_Pos_prev[8]      ; clk      ;
+; N/A                                     ; None                                                ; -3.485 ns ; reset   ; controller:inst19|Y_Pos_prev[7]      ; clk      ;
+; N/A                                     ; None                                                ; -3.485 ns ; reset   ; controller:inst19|Y_Pos_prev[5]      ; clk      ;
+; N/A                                     ; None                                                ; -3.529 ns ; reset   ; Color_Mapper:inst|flow4_x[13][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.537 ns ; reset   ; Color_Mapper:inst|flow11_x[24][8]    ; clk      ;
+; N/A                                     ; None                                                ; -3.564 ns ; reset   ; Color_Mapper:inst|flow0_y[15][1]     ; clk      ;
+; N/A                                     ; None                                                ; -3.619 ns ; reset   ; Color_Mapper:inst|flow2_y[15][5]     ; clk      ;
+; N/A                                     ; None                                                ; -3.619 ns ; reset   ; Color_Mapper:inst|flow2_y[15][1]     ; clk      ;
+; N/A                                     ; None                                                ; -3.621 ns ; reset   ; Color_Mapper:inst|flow6_y[15][3]     ; clk      ;
+; N/A                                     ; None                                                ; -3.636 ns ; reset   ; Color_Mapper:inst|flow11_y[4][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.637 ns ; reset   ; Color_Mapper:inst|flow11_y[4][8]     ; clk      ;
+; N/A                                     ; None                                                ; -3.638 ns ; reset   ; Color_Mapper:inst|flow11_x[12][6]    ; clk      ;
+; N/A                                     ; None                                                ; -3.638 ns ; reset   ; Color_Mapper:inst|flow11_y[4][7]     ; clk      ;
+; N/A                                     ; None                                                ; -3.639 ns ; reset   ; Color_Mapper:inst|flow11_y[4][6]     ; clk      ;
+; N/A                                     ; None                                                ; -3.642 ns ; reset   ; Color_Mapper:inst|flow11_x[12][9]    ; clk      ;
+; N/A                                     ; None                                                ; -3.642 ns ; reset   ; Color_Mapper:inst|flow11_x[12][8]    ; clk      ;
+; N/A                                     ; None                                                ; -3.661 ns ; reset   ; Color_Mapper:inst|flow0_x[18][0]     ; clk      ;
+; N/A                                     ; None                                                ; -3.668 ns ; reset   ; Color_Mapper:inst|flow11_y[15][6]    ; clk      ;
+; N/A                                     ; None                                                ; -3.671 ns ; reset   ; Color_Mapper:inst|flow11_x[13][2]    ; clk      ;
+; N/A                                     ; None                                                ; -3.671 ns ; reset   ; Color_Mapper:inst|flow11_x[13][0]    ; clk      ;
+; N/A                                     ; None                                                ; -3.671 ns ; reset   ; Color_Mapper:inst|flow11_x[13][1]    ; clk      ;
+; N/A                                     ; None                                                ; -3.677 ns ; reset   ; Color_Mapper:inst|flow11_y[15][3]    ; clk      ;
+; N/A                                     ; None                                                ; -3.678 ns ; reset   ; Color_Mapper:inst|flow11_y[15][9]    ; clk      ;
+; N/A                                     ; None                                                ; -3.679 ns ; reset   ; Color_Mapper:inst|flow11_y[15][2]    ; clk      ;
+; N/A                                     ; None                                                ; -3.715 ns ; reset   ; Color_Mapper:inst|flow11_x[13][9]    ; clk      ;
+; N/A                                     ; None                                                ; -3.715 ns ; reset   ; Color_Mapper:inst|flow4_x[13][0]     ; clk      ;
+; N/A                                     ; None                                                ; -3.715 ns ; reset   ; Color_Mapper:inst|flow4_x[13][2]     ; clk      ;
+; N/A                                     ; None                                                ; -3.718 ns ; reset   ; Color_Mapper:inst|flow11_x[13][5]    ; clk      ;
+; N/A                                     ; None                                                ; -3.719 ns ; reset   ; Color_Mapper:inst|flow0_y[23][7]     ; clk      ;
+; N/A                                     ; None                                                ; -3.720 ns ; reset   ; Color_Mapper:inst|flow0_y[23][6]     ; clk      ;
+; N/A                                     ; None                                                ; -3.724 ns ; reset   ; Color_Mapper:inst|flow0_x[18][2]     ; clk      ;
+; N/A                                     ; None                                                ; -3.744 ns ; reset   ; Color_Mapper:inst|flow4_x[18][5]     ; clk      ;
+; N/A                                     ; None                                                ; -3.745 ns ; reset   ; Color_Mapper:inst|flow4_x[18][8]     ; clk      ;
+; N/A                                     ; None                                                ; -3.748 ns ; reset   ; Color_Mapper:inst|flow4_x[18][7]     ; clk      ;
+; N/A                                     ; None                                                ; -3.749 ns ; reset   ; Color_Mapper:inst|flow4_x[18][6]     ; clk      ;
+; N/A                                     ; None                                                ; -3.751 ns ; reset   ; Color_Mapper:inst|flow0_x[8][2]      ; clk      ;
+; N/A                                     ; None                                                ; -3.770 ns ; reset   ; Color_Mapper:inst|flow4_x[18][1]     ; clk      ;
+; N/A                                     ; None                                                ; -3.771 ns ; reset   ; Color_Mapper:inst|flow4_x[18][4]     ; clk      ;
+; N/A                                     ; None                                                ; -3.771 ns ; reset   ; Color_Mapper:inst|flow4_x[18][2]     ; clk      ;
+; N/A                                     ; None                                                ; -3.772 ns ; reset   ; Color_Mapper:inst|flow4_x[18][3]     ; clk      ;
+; N/A                                     ; None                                                ; -3.773 ns ; reset   ; Color_Mapper:inst|flow11_x[2][7]     ; clk      ;
+; N/A                                     ; None                                                ; -3.774 ns ; reset   ; Color_Mapper:inst|flow4_x[18][0]     ; clk      ;
+; N/A                                     ; None                                                ; -3.774 ns ; reset   ; Color_Mapper:inst|flow11_x[2][1]     ; clk      ;
+; N/A                                     ; None                                                ; -3.774 ns ; reset   ; Color_Mapper:inst|flow11_x[2][0]     ; clk      ;
+; N/A                                     ; None                                                ; -3.774 ns ; reset   ; Color_Mapper:inst|flow11_x[2][8]     ; clk      ;
+; N/A                                     ; None                                                ; -3.776 ns ; reset   ; Color_Mapper:inst|flow4_x[2][2]      ; clk      ;
+; N/A                                     ; None                                                ; -3.779 ns ; reset   ; Color_Mapper:inst|flow4_x[2][3]      ; clk      ;
+; N/A                                     ; None                                                ; -3.789 ns ; reset   ; Color_Mapper:inst|flow4_y[15][2]     ; clk      ;
+; N/A                                     ; None                                                ; -3.796 ns ; reset   ; Color_Mapper:inst|flow4_y[15][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.810 ns ; reset   ; Color_Mapper:inst|flow11_x[24][7]    ; clk      ;
+; N/A                                     ; None                                                ; -3.813 ns ; reset   ; Color_Mapper:inst|flow11_x[9][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.814 ns ; reset   ; Color_Mapper:inst|flow11_x[24][6]    ; clk      ;
+; N/A                                     ; None                                                ; -3.814 ns ; reset   ; Color_Mapper:inst|flow11_y[18][0]    ; clk      ;
+; N/A                                     ; None                                                ; -3.820 ns ; reset   ; Color_Mapper:inst|flow11_y[18][1]    ; clk      ;
+; N/A                                     ; None                                                ; -3.826 ns ; reset   ; Color_Mapper:inst|flow0_y[13][1]     ; clk      ;
+; N/A                                     ; None                                                ; -3.826 ns ; reset   ; Color_Mapper:inst|flow0_y[13][5]     ; clk      ;
+; N/A                                     ; None                                                ; -3.841 ns ; reset   ; Color_Mapper:inst|flow0_y[15][0]     ; clk      ;
+; N/A                                     ; None                                                ; -3.846 ns ; reset   ; Color_Mapper:inst|flow0_x[21][8]     ; clk      ;
+; N/A                                     ; None                                                ; -3.846 ns ; reset   ; Color_Mapper:inst|flow0_x[21][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.853 ns ; reset   ; Color_Mapper:inst|flow4_y[2][9]      ; clk      ;
+; N/A                                     ; None                                                ; -3.853 ns ; reset   ; Color_Mapper:inst|flow4_y[2][1]      ; clk      ;
+; N/A                                     ; None                                                ; -3.854 ns ; reset   ; Color_Mapper:inst|flow4_y[2][8]      ; clk      ;
+; N/A                                     ; None                                                ; -3.855 ns ; reset   ; Color_Mapper:inst|flow4_y[2][0]      ; clk      ;
+; N/A                                     ; None                                                ; -3.857 ns ; reset   ; Color_Mapper:inst|flow6_x[15][1]     ; clk      ;
+; N/A                                     ; None                                                ; -3.859 ns ; reset   ; Color_Mapper:inst|flow6_x[15][7]     ; clk      ;
+; N/A                                     ; None                                                ; -3.860 ns ; reset   ; Color_Mapper:inst|flow6_x[15][5]     ; clk      ;
+; N/A                                     ; None                                                ; -3.860 ns ; reset   ; Color_Mapper:inst|flow11_y[4][2]     ; clk      ;
+; N/A                                     ; None                                                ; -3.884 ns ; reset   ; Color_Mapper:inst|flow4_y[15][0]     ; clk      ;
+; N/A                                     ; None                                                ; -3.884 ns ; reset   ; Color_Mapper:inst|flow4_y[15][5]     ; clk      ;
+; N/A                                     ; None                                                ; -3.884 ns ; reset   ; Color_Mapper:inst|flow4_y[15][4]     ; clk      ;
+; N/A                                     ; None                                                ; -3.887 ns ; reset   ; Color_Mapper:inst|flow2_y[15][6]     ; clk      ;
+; N/A                                     ; None                                                ; -3.887 ns ; reset   ; Color_Mapper:inst|flow2_y[15][7]     ; clk      ;
+; N/A                                     ; None                                                ; -3.887 ns ; reset   ; Color_Mapper:inst|flow2_y[15][4]     ; clk      ;
+; N/A                                     ; None                                                ; -3.888 ns ; reset   ; Color_Mapper:inst|flow2_y[15][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.889 ns ; reset   ; Color_Mapper:inst|flow4_y[15][1]     ; clk      ;
+; N/A                                     ; None                                                ; -3.893 ns ; reset   ; Color_Mapper:inst|flow11_y[1][1]     ; clk      ;
+; N/A                                     ; None                                                ; -3.893 ns ; reset   ; Color_Mapper:inst|flow11_y[1][6]     ; clk      ;
+; N/A                                     ; None                                                ; -3.894 ns ; reset   ; Color_Mapper:inst|flow11_y[1][8]     ; clk      ;
+; N/A                                     ; None                                                ; -3.895 ns ; reset   ; Color_Mapper:inst|flow11_y[1][7]     ; clk      ;
+; N/A                                     ; None                                                ; -3.896 ns ; reset   ; Color_Mapper:inst|flow11_y[1][3]     ; clk      ;
+; N/A                                     ; None                                                ; -3.898 ns ; reset   ; Color_Mapper:inst|flow11_y[1][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.898 ns ; reset   ; Color_Mapper:inst|flow11_y[1][2]     ; clk      ;
+; N/A                                     ; None                                                ; -3.914 ns ; reset   ; Color_Mapper:inst|flow4_y[14][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.921 ns ; reset   ; Color_Mapper:inst|flow2_y[15][3]     ; clk      ;
+; N/A                                     ; None                                                ; -3.922 ns ; reset   ; Color_Mapper:inst|flow2_y[15][2]     ; clk      ;
+; N/A                                     ; None                                                ; -3.926 ns ; reset   ; Color_Mapper:inst|flow11_x[4][0]     ; clk      ;
+; N/A                                     ; None                                                ; -3.927 ns ; reset   ; Color_Mapper:inst|flow11_x[4][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.928 ns ; reset   ; Color_Mapper:inst|flow0_x[6][6]      ; clk      ;
+; N/A                                     ; None                                                ; -3.928 ns ; reset   ; Color_Mapper:inst|flow6_y[15][2]     ; clk      ;
+; N/A                                     ; None                                                ; -3.935 ns ; reset   ; Color_Mapper:inst|flow11_x[4][8]     ; clk      ;
+; N/A                                     ; None                                                ; -3.936 ns ; reset   ; Color_Mapper:inst|flow6_y[15][0]     ; clk      ;
+; N/A                                     ; None                                                ; -3.937 ns ; reset   ; Color_Mapper:inst|flow6_y[15][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.942 ns ; reset   ; Color_Mapper:inst|flow4_y[14][4]     ; clk      ;
+; N/A                                     ; None                                                ; -3.945 ns ; reset   ; Color_Mapper:inst|flow4_y[14][7]     ; clk      ;
+; N/A                                     ; None                                                ; -3.946 ns ; reset   ; Color_Mapper:inst|flow0_y[12][8]     ; clk      ;
+; N/A                                     ; None                                                ; -3.951 ns ; reset   ; Color_Mapper:inst|flow0_y[12][0]     ; clk      ;
+; N/A                                     ; None                                                ; -3.954 ns ; reset   ; Color_Mapper:inst|flow11_y[24][8]    ; clk      ;
+; N/A                                     ; None                                                ; -3.955 ns ; reset   ; Color_Mapper:inst|flow0_y[12][6]     ; clk      ;
+; N/A                                     ; None                                                ; -3.956 ns ; reset   ; Color_Mapper:inst|flow0_y[12][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.957 ns ; reset   ; Color_Mapper:inst|flow4_x[22][4]     ; clk      ;
+; N/A                                     ; None                                                ; -3.957 ns ; reset   ; Color_Mapper:inst|flow0_y[12][3]     ; clk      ;
+; N/A                                     ; None                                                ; -3.957 ns ; reset   ; Color_Mapper:inst|flow0_x[4][7]      ; clk      ;
+; N/A                                     ; None                                                ; -3.963 ns ; reset   ; Color_Mapper:inst|flow0_x[18][8]     ; clk      ;
+; N/A                                     ; None                                                ; -3.968 ns ; reset   ; Color_Mapper:inst|flow0_x[18][1]     ; clk      ;
+; N/A                                     ; None                                                ; -3.968 ns ; reset   ; Color_Mapper:inst|flow0_x[18][7]     ; clk      ;
+; N/A                                     ; None                                                ; -3.969 ns ; reset   ; Color_Mapper:inst|flow0_x[18][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.975 ns ; reset   ; Color_Mapper:inst|flow0_y[18][8]     ; clk      ;
+; N/A                                     ; None                                                ; -3.980 ns ; reset   ; Color_Mapper:inst|flow4_x[22][1]     ; clk      ;
+; N/A                                     ; None                                                ; -3.980 ns ; reset   ; Color_Mapper:inst|flow0_y[18][3]     ; clk      ;
+; N/A                                     ; None                                                ; -3.981 ns ; reset   ; Color_Mapper:inst|flow4_x[22][0]     ; clk      ;
+; N/A                                     ; None                                                ; -3.981 ns ; reset   ; Color_Mapper:inst|flow0_x[22][0]     ; clk      ;
+; N/A                                     ; None                                                ; -3.981 ns ; reset   ; Color_Mapper:inst|flow0_x[22][1]     ; clk      ;
+; N/A                                     ; None                                                ; -3.981 ns ; reset   ; Color_Mapper:inst|flow0_y[18][2]     ; clk      ;
+; N/A                                     ; None                                                ; -3.991 ns ; reset   ; Color_Mapper:inst|flow4_x[23][3]     ; clk      ;
+; N/A                                     ; None                                                ; -3.992 ns ; reset   ; Color_Mapper:inst|flow11_x[0][9]     ; clk      ;
+; N/A                                     ; None                                                ; -3.994 ns ; reset   ; Color_Mapper:inst|flow4_y[18][0]     ; clk      ;
+; N/A                                     ; None                                                ; -3.995 ns ; reset   ; Color_Mapper:inst|flow4_y[18][2]     ; clk      ;
+; N/A                                     ; None                                                ; -4.001 ns ; reset   ; Color_Mapper:inst|flow0_x[2][4]      ; clk      ;
+; N/A                                     ; None                                                ; -4.003 ns ; reset   ; Color_Mapper:inst|flow0_x[2][8]      ; clk      ;
+; N/A                                     ; None                                                ; -4.005 ns ; reset   ; Color_Mapper:inst|flow0_x[24][0]     ; clk      ;
+; N/A                                     ; None                                                ; -4.013 ns ; reset   ; Color_Mapper:inst|flow0_x[24][1]     ; clk      ;
+; N/A                                     ; None                                                ; -4.013 ns ; reset   ; Color_Mapper:inst|flow4_y[2][7]      ; clk      ;
+; N/A                                     ; None                                                ; -4.014 ns ; reset   ; Color_Mapper:inst|flow4_y[2][6]      ; clk      ;
+; N/A                                     ; None                                                ; -4.015 ns ; reset   ; Color_Mapper:inst|flow0_y[24][2]     ; clk      ;
+; N/A                                     ; None                                                ; -4.016 ns ; reset   ; Color_Mapper:inst|flow0_y[24][7]     ; clk      ;
+; N/A                                     ; None                                                ; -4.016 ns ; reset   ; Color_Mapper:inst|flow4_y[2][4]      ; clk      ;
+; N/A                                     ; None                                                ; -4.017 ns ; reset   ; Color_Mapper:inst|flow4_y[2][3]      ; clk      ;
+; N/A                                     ; None                                                ; -4.017 ns ; reset   ; Color_Mapper:inst|flow4_y[2][5]      ; clk      ;
+; N/A                                     ; None                                                ; -4.025 ns ; reset   ; Color_Mapper:inst|flow0_x[13][3]     ; clk      ;
+; N/A                                     ; None                                                ; -4.026 ns ; reset   ; Color_Mapper:inst|flow4_x[25][0]     ; clk      ;
+; N/A                                     ; None                                                ; -4.026 ns ; reset   ; Color_Mapper:inst|flow4_x[13][5]     ; clk      ;
+; N/A                                     ; None                                                ; -4.026 ns ; reset   ; Color_Mapper:inst|flow0_x[13][7]     ; clk      ;
+; N/A                                     ; None                                                ; -4.027 ns ; reset   ; Color_Mapper:inst|flow4_x[25][1]     ; clk      ;
+; N/A                                     ; None                                                ; -4.027 ns ; reset   ; Color_Mapper:inst|flow0_x[4][9]      ; clk      ;
+; N/A                                     ; None                                                ; -4.028 ns ; reset   ; Color_Mapper:inst|flow4_y[18][8]     ; clk      ;
+; N/A                                     ; None                                                ; -4.028 ns ; reset   ; Color_Mapper:inst|flow0_x[13][2]     ; clk      ;
+; N/A                                     ; None                                                ; -4.028 ns ; reset   ; Color_Mapper:inst|flow0_y[12][7]     ; clk      ;
+; N/A                                     ; None                                                ; -4.028 ns ; reset   ; Color_Mapper:inst|flow0_y[12][4]     ; clk      ;
+; N/A                                     ; None                                                ; -4.030 ns ; reset   ; Color_Mapper:inst|flow0_x[13][4]     ; clk      ;
+; N/A                                     ; None                                                ; -4.030 ns ; reset   ; Color_Mapper:inst|flow0_x[13][6]     ; clk      ;
+; N/A                                     ; None                                                ; -4.030 ns ; reset   ; Color_Mapper:inst|flow0_y[12][2]     ; clk      ;
+; N/A                                     ; None                                                ; -4.035 ns ; reset   ; Color_Mapper:inst|flow0_x[25][3]     ; clk      ;
+; N/A                                     ; None                                                ; -4.036 ns ; reset   ; Color_Mapper:inst|flow4_x[25][3]     ; clk      ;
+; N/A                                     ; None                                                ; -4.038 ns ; reset   ; Color_Mapper:inst|flow0_y[22][1]     ; clk      ;
+; N/A                                     ; None                                                ; -4.038 ns ; reset   ; Color_Mapper:inst|flow4_y[1][7]      ; clk      ;
+; N/A                                     ; None                                                ; -4.049 ns ; reset   ; Color_Mapper:inst|flow4_y[12][4]     ; clk      ;
+; N/A                                     ; None                                                ; -4.050 ns ; reset   ; Color_Mapper:inst|flow4_y[12][8]     ; clk      ;
+; N/A                                     ; None                                                ; -4.051 ns ; reset   ; Color_Mapper:inst|flow4_y[12][7]     ; clk      ;
+; N/A                                     ; None                                                ; -4.051 ns ; reset   ; Color_Mapper:inst|flow4_y[12][9]     ; clk      ;
+; N/A                                     ; None                                                ; -4.058 ns ; reset   ; Color_Mapper:inst|flow4_y[15][8]     ; clk      ;
+; Timing analysis restricted to 200 rows. ; To change the limit use Settings (Assignments menu) ;           ;         ;                                      ;          ;
++-----------------------------------------+-----------------------------------------------------+-----------+---------+--------------------------------------+----------+
+
+
++--------------------------+
+; Timing Analyzer Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Classic Timing Analyzer
+    Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+    Info: Processing started: Fri Dec 07 15:48:57 2012
+Info: Command: quartus_tan --read_settings_files=off --write_settings_files=off Flow -c Flow --timing_analysis_only
+Warning: Found pins functioning as undefined clocks and/or memory enables
+    Info: Assuming node "clk" is an undefined clock
+Warning: Found 4 node(s) in clock paths which may be acting as ripple and/or gated clocks -- node(s) analyzed as buffer(s) resulting in clock skew
+    Info: Detected ripple clock "clk_div:inst1|frame_clk_div[0]" as buffer
+    Info: Detected ripple clock "clk_div:inst1|frame_clk_div[9]" as buffer
+    Info: Detected ripple clock "clk_div:inst1|frame_clk_div[22]" as buffer
+    Info: Detected ripple clock "clk_div:inst1|frame_clk_div[14]" as buffer
+Info: Clock "clk" has Internal fmax of 65.55 MHz between source register "vga_controller:inst2|hc[2]" and destination register "Color_Mapper:inst|red_sig_1[9]" (period= 15.256 ns)
+    Info: + Longest register to register delay is 14.997 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCFF_X28_Y19_N29; Fanout = 572; REG Node = 'vga_controller:inst2|hc[2]'
+        Info: 2: + IC(2.567 ns) + CELL(0.393 ns) = 2.960 ns; Loc. = LCCOMB_X8_Y1_N8; Fanout = 1; COMB Node = 'Color_Mapper:inst|LessThan788~5'
+        Info: 3: + IC(0.000 ns) + CELL(0.071 ns) = 3.031 ns; Loc. = LCCOMB_X8_Y1_N10; Fanout = 1; COMB Node = 'Color_Mapper:inst|LessThan788~7'
+        Info: 4: + IC(0.000 ns) + CELL(0.071 ns) = 3.102 ns; Loc. = LCCOMB_X8_Y1_N12; Fanout = 1; COMB Node = 'Color_Mapper:inst|LessThan788~9'
+        Info: 5: + IC(0.000 ns) + CELL(0.159 ns) = 3.261 ns; Loc. = LCCOMB_X8_Y1_N14; Fanout = 1; COMB Node = 'Color_Mapper:inst|LessThan788~11'
+        Info: 6: + IC(0.000 ns) + CELL(0.071 ns) = 3.332 ns; Loc. = LCCOMB_X8_Y1_N16; Fanout = 1; COMB Node = 'Color_Mapper:inst|LessThan788~13'
+        Info: 7: + IC(0.000 ns) + CELL(0.071 ns) = 3.403 ns; Loc. = LCCOMB_X8_Y1_N18; Fanout = 1; COMB Node = 'Color_Mapper:inst|LessThan788~15'
+        Info: 8: + IC(0.000 ns) + CELL(0.071 ns) = 3.474 ns; Loc. = LCCOMB_X8_Y1_N20; Fanout = 1; COMB Node = 'Color_Mapper:inst|LessThan788~17'
+        Info: 9: + IC(0.000 ns) + CELL(0.410 ns) = 3.884 ns; Loc. = LCCOMB_X8_Y1_N22; Fanout = 1; COMB Node = 'Color_Mapper:inst|LessThan788~18'
+        Info: 10: + IC(0.980 ns) + CELL(0.275 ns) = 5.139 ns; Loc. = LCCOMB_X5_Y5_N0; Fanout = 2; COMB Node = 'Color_Mapper:inst|DRAW_FLOWS~447'
+        Info: 11: + IC(1.349 ns) + CELL(0.150 ns) = 6.638 ns; Loc. = LCCOMB_X5_Y14_N14; Fanout = 4; COMB Node = 'Color_Mapper:inst|green_sig_1[2]~33'
+        Info: 12: + IC(1.713 ns) + CELL(0.150 ns) = 8.501 ns; Loc. = LCCOMB_X12_Y25_N28; Fanout = 4; COMB Node = 'Color_Mapper:inst|DRAW_FLOWS~454'
+        Info: 13: + IC(1.374 ns) + CELL(0.150 ns) = 10.025 ns; Loc. = LCCOMB_X12_Y14_N24; Fanout = 1; COMB Node = 'Color_Mapper:inst|DRAW_FLOWS~1248'
+        Info: 14: + IC(1.685 ns) + CELL(0.149 ns) = 11.859 ns; Loc. = LCCOMB_X18_Y25_N6; Fanout = 11; COMB Node = 'Color_Mapper:inst|DRAW_FLOWS~661'
+        Info: 15: + IC(1.093 ns) + CELL(0.150 ns) = 13.102 ns; Loc. = LCCOMB_X17_Y30_N12; Fanout = 1; COMB Node = 'Color_Mapper:inst|DRAW_FLOWS~1068'
+        Info: 16: + IC(0.748 ns) + CELL(0.275 ns) = 14.125 ns; Loc. = LCCOMB_X18_Y26_N12; Fanout = 1; COMB Node = 'Color_Mapper:inst|DRAW_FLOWS~1110'
+        Info: 17: + IC(0.251 ns) + CELL(0.150 ns) = 14.526 ns; Loc. = LCCOMB_X18_Y26_N26; Fanout = 1; COMB Node = 'Color_Mapper:inst|DRAW_FLOWS~1280'
+        Info: 18: + IC(0.237 ns) + CELL(0.150 ns) = 14.913 ns; Loc. = LCCOMB_X18_Y26_N28; Fanout = 1; COMB Node = 'Color_Mapper:inst|DRAW_FLOWS~1123'
+        Info: 19: + IC(0.000 ns) + CELL(0.084 ns) = 14.997 ns; Loc. = LCFF_X18_Y26_N29; Fanout = 1; REG Node = 'Color_Mapper:inst|red_sig_1[9]'
+        Info: Total cell delay = 3.000 ns ( 20.00 % )
+        Info: Total interconnect delay = 11.997 ns ( 80.00 % )
+    Info: - Smallest clock skew is -0.045 ns
+        Info: + Shortest clock path from clock "clk" to destination register is 6.284 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_N2; Fanout = 5; CLK Node = 'clk'
+            Info: 2: + IC(2.193 ns) + CELL(0.787 ns) = 3.979 ns; Loc. = LCFF_X64_Y19_N3; Fanout = 5; REG Node = 'clk_div:inst1|frame_clk_div[0]'
+            Info: 3: + IC(0.783 ns) + CELL(0.000 ns) = 4.762 ns; Loc. = CLKCTRL_G5; Fanout = 71; COMB Node = 'clk_div:inst1|frame_clk_div[0]~clkctrl'
+            Info: 4: + IC(0.985 ns) + CELL(0.537 ns) = 6.284 ns; Loc. = LCFF_X18_Y26_N29; Fanout = 1; REG Node = 'Color_Mapper:inst|red_sig_1[9]'
+            Info: Total cell delay = 2.323 ns ( 36.97 % )
+            Info: Total interconnect delay = 3.961 ns ( 63.03 % )
+        Info: - Longest clock path from clock "clk" to source register is 6.329 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_N2; Fanout = 5; CLK Node = 'clk'
+            Info: 2: + IC(2.193 ns) + CELL(0.787 ns) = 3.979 ns; Loc. = LCFF_X64_Y19_N3; Fanout = 5; REG Node = 'clk_div:inst1|frame_clk_div[0]'
+            Info: 3: + IC(0.783 ns) + CELL(0.000 ns) = 4.762 ns; Loc. = CLKCTRL_G5; Fanout = 71; COMB Node = 'clk_div:inst1|frame_clk_div[0]~clkctrl'
+            Info: 4: + IC(1.030 ns) + CELL(0.537 ns) = 6.329 ns; Loc. = LCFF_X28_Y19_N29; Fanout = 572; REG Node = 'vga_controller:inst2|hc[2]'
+            Info: Total cell delay = 2.323 ns ( 36.70 % )
+            Info: Total interconnect delay = 4.006 ns ( 63.30 % )
+    Info: + Micro clock to output delay of source is 0.250 ns
+    Info: + Micro setup delay of destination is -0.036 ns
+Info: tsu for register "Color_Mapper:inst|flow7_x[5][5]" (data pin = "reset", clock pin = "clk") is 10.784 ns
+    Info: + Longest pin to register delay is 17.003 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.862 ns) = 0.862 ns; Loc. = PIN_G26; Fanout = 119; PIN Node = 'reset'
+        Info: 2: + IC(7.488 ns) + CELL(0.410 ns) = 8.760 ns; Loc. = LCCOMB_X27_Y30_N8; Fanout = 1043; COMB Node = 'Color_Mapper:inst|flow10_x[0][9]~0'
+        Info: 3: + IC(1.322 ns) + CELL(0.150 ns) = 10.232 ns; Loc. = LCCOMB_X22_Y27_N18; Fanout = 520; COMB Node = 'Color_Mapper:inst|flow7_x[10][9]~0'
+        Info: 4: + IC(4.078 ns) + CELL(0.150 ns) = 14.460 ns; Loc. = LCCOMB_X56_Y8_N0; Fanout = 1; COMB Node = 'Color_Mapper:inst|flow7_x[5][5]~95'
+        Info: 5: + IC(2.177 ns) + CELL(0.366 ns) = 17.003 ns; Loc. = LCFF_X32_Y4_N25; Fanout = 5; REG Node = 'Color_Mapper:inst|flow7_x[5][5]'
+        Info: Total cell delay = 1.938 ns ( 11.40 % )
+        Info: Total interconnect delay = 15.065 ns ( 88.60 % )
+    Info: + Micro setup delay of destination is -0.036 ns
+    Info: - Shortest clock path from clock "clk" to destination register is 6.183 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_N2; Fanout = 5; CLK Node = 'clk'
+        Info: 2: + IC(1.895 ns) + CELL(0.787 ns) = 3.681 ns; Loc. = LCFF_X64_Y18_N5; Fanout = 3; REG Node = 'clk_div:inst1|frame_clk_div[14]'
+        Info: 3: + IC(0.932 ns) + CELL(0.000 ns) = 4.613 ns; Loc. = CLKCTRL_G7; Fanout = 7109; COMB Node = 'clk_div:inst1|frame_clk_div[14]~clkctrl'
+        Info: 4: + IC(1.033 ns) + CELL(0.537 ns) = 6.183 ns; Loc. = LCFF_X32_Y4_N25; Fanout = 5; REG Node = 'Color_Mapper:inst|flow7_x[5][5]'
+        Info: Total cell delay = 2.323 ns ( 37.57 % )
+        Info: Total interconnect delay = 3.860 ns ( 62.43 % )
+Info: tco from clock "clk" to destination pin "blank" through register "vga_controller:inst2|vc[6]" is 16.164 ns
+    Info: + Longest clock path from clock "clk" to source register is 6.328 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_N2; Fanout = 5; CLK Node = 'clk'
+        Info: 2: + IC(2.193 ns) + CELL(0.787 ns) = 3.979 ns; Loc. = LCFF_X64_Y19_N3; Fanout = 5; REG Node = 'clk_div:inst1|frame_clk_div[0]'
+        Info: 3: + IC(0.783 ns) + CELL(0.000 ns) = 4.762 ns; Loc. = CLKCTRL_G5; Fanout = 71; COMB Node = 'clk_div:inst1|frame_clk_div[0]~clkctrl'
+        Info: 4: + IC(1.029 ns) + CELL(0.537 ns) = 6.328 ns; Loc. = LCFF_X30_Y12_N25; Fanout = 585; REG Node = 'vga_controller:inst2|vc[6]'
+        Info: Total cell delay = 2.323 ns ( 36.71 % )
+        Info: Total interconnect delay = 4.005 ns ( 63.29 % )
+    Info: + Micro clock to output delay of source is 0.250 ns
+    Info: + Longest register to pin delay is 9.586 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCFF_X30_Y12_N25; Fanout = 585; REG Node = 'vga_controller:inst2|vc[6]'
+        Info: 2: + IC(2.262 ns) + CELL(0.275 ns) = 2.537 ns; Loc. = LCCOMB_X23_Y21_N28; Fanout = 2; COMB Node = 'vga_controller:inst2|LessThan3~0'
+        Info: 3: + IC(1.866 ns) + CELL(0.150 ns) = 4.553 ns; Loc. = LCCOMB_X29_Y31_N22; Fanout = 1; COMB Node = 'vga_controller:inst2|blank_proc~1'
+        Info: 4: + IC(2.235 ns) + CELL(2.798 ns) = 9.586 ns; Loc. = PIN_D6; Fanout = 0; PIN Node = 'blank'
+        Info: Total cell delay = 3.223 ns ( 33.62 % )
+        Info: Total interconnect delay = 6.363 ns ( 66.38 % )
+Info: th for register "keyboardVhdl:inst25|shiftRegSig1[10]" (data pin = "ps2data", clock pin = "clk") is -0.062 ns
+    Info: + Longest clock path from clock "clk" to destination register is 6.171 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_N2; Fanout = 5; CLK Node = 'clk'
+        Info: 2: + IC(2.193 ns) + CELL(0.787 ns) = 3.979 ns; Loc. = LCFF_X64_Y19_N27; Fanout = 3; REG Node = 'clk_div:inst1|frame_clk_div[9]'
+        Info: 3: + IC(0.634 ns) + CELL(0.000 ns) = 4.613 ns; Loc. = CLKCTRL_G6; Fanout = 41; COMB Node = 'clk_div:inst1|frame_clk_div[9]~clkctrl'
+        Info: 4: + IC(1.021 ns) + CELL(0.537 ns) = 6.171 ns; Loc. = LCFF_X38_Y32_N21; Fanout = 1; REG Node = 'keyboardVhdl:inst25|shiftRegSig1[10]'
+        Info: Total cell delay = 2.323 ns ( 37.64 % )
+        Info: Total interconnect delay = 3.848 ns ( 62.36 % )
+    Info: + Micro hold delay of destination is 0.266 ns
+    Info: - Shortest pin to register delay is 6.499 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.882 ns) = 0.882 ns; Loc. = PIN_C24; Fanout = 1; PIN Node = 'ps2data'
+        Info: 2: + IC(5.384 ns) + CELL(0.149 ns) = 6.415 ns; Loc. = LCCOMB_X38_Y32_N20; Fanout = 1; COMB Node = 'keyboardVhdl:inst25|shiftRegSig1[10]~feeder'
+        Info: 3: + IC(0.000 ns) + CELL(0.084 ns) = 6.499 ns; Loc. = LCFF_X38_Y32_N21; Fanout = 1; REG Node = 'keyboardVhdl:inst25|shiftRegSig1[10]'
+        Info: Total cell delay = 1.115 ns ( 17.16 % )
+        Info: Total interconnect delay = 5.384 ns ( 82.84 % )
+Info: Quartus II Classic Timing Analyzer was successful. 0 errors, 2 warnings
+    Info: Peak virtual memory: 336 megabytes
+    Info: Processing ended: Fri Dec 07 15:49:04 2012
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:07
+
+

@@ -1,0 +1,159 @@
+library IEEE;
+library work;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use work.custom_flow.all;
+
+
+entity controller is
+    Port( div_clk           : in std_logic;
+          Reset         : in std_logic;
+          key_RDY		: in std_logic;
+		  enter : out std_logic;
+          flow_mode : in std_logic;
+		  key_code	 : in std_logic_vector(7 downto 0);
+          key_used : out std_logic; -- output back to keybaord\
+          PosX, PrevPosX, PosY, PrevPosY : out std_logic_vector(9 downto 0);
+          PosX_in, PosY_in	: in std_logic_vector(9 downto 0);
+          space_used : out std_logic
+          );
+end controller;
+
+architecture Behavioral of controller is
+
+signal Y_Pos_sig: std_logic_vector(9 downto 0) := Y_Min;
+signal X_Pos_sig: std_logic_vector(9 downto 0) := X_Min;
+signal X_Pos_prev: std_logic_vector(9 downto 0);
+signal Y_Pos_prev: std_logic_vector(9 downto 0);
+signal  key_used_sig, enter_sig,space_sig: std_logic := '0';
+
+--dynamic register can hold max 35 segments.
+
+begin 
+	
+
+Assign_Coordinates : process( key_code, div_clk, key_RDY, flow_mode, X_Pos_sig, Y_Pos_sig, Reset)
+variable Y_Motion : std_logic_vector(9 downto 0) := "0000000000";
+variable X_Motion : std_logic_vector(9 downto 0) := "0000000000";
+begin
+		if(Reset = '1') then
+			Y_Pos_sig <= Y_Min; 
+			X_Pos_sig <= X_Min;
+		elsif(rising_edge(div_clk) AND key_RDY = '1') then
+		key_used_sig <= '0';
+		enter_sig <= '0';
+		space_sig <= '0';
+		if (key_code = "00011100" AND X_Pos_sig /= X_Min) then		-- key is A - go left
+			X_Motion := not(Step) + '1';
+			Y_Motion := "0000000000";
+			key_used_sig <= '1';
+							
+		elsif(key_code = "00011100" AND X_Pos_sig = X_Min AND flow_mode = '0') then		-- key is A - go left
+			X_Motion := "0110111000"; -- wrap around to the other side magic number = 520-80
+			Y_Motion := "0000000000";
+			key_used_sig <= '1';	
+		
+		-- in flow mode now so we can't wrap to the other side of the screen (these may be redundant checks - just to play it safe)
+		elsif(key_code = "00011100" AND X_Pos_sig = X_Min AND flow_mode = '1') then		-- key is A - go left
+			X_Motion := "0000000000"; -- wrap around to the other side magic number = 520-80
+			Y_Motion := "0000000000";
+			key_used_sig <= '1';				
+				
+		elsif (key_code = "00100011" AND X_Pos_sig+Step /= X_Max ) then		-- key is D - go right
+			X_Motion := Step;
+			Y_Motion := "0000000000";
+			key_used_sig  <='1';	
+								
+		elsif (key_code = "00100011" AND X_Pos_sig+Step = X_Max AND flow_mode = '0') then		-- key is D - go right
+			X_Motion := not("0110111000")+1; -- magic number = 460
+			Y_Motion := "0000000000";
+			key_used_sig <= '1';
+		
+		-- in flow mode so we cant wrap around. stay put if we try to go off the board
+		elsif (key_code = "00100011" AND X_Pos_sig+Step = X_Max AND flow_mode = '1') then		-- key is D - go right
+			X_Motion := "0000000000"; -- magic number = 460
+			Y_Motion := "0000000000";
+			key_used_sig <= '1';
+		
+		elsif (key_code = "00011101" AND Y_Pos_sig /= Y_Min ) then		-- ley is W - go up
+			Y_Motion := not(Step) + '1';		-- dont allow motion
+			X_Motion := "0000000000";
+			key_used_sig <= '1';
+			
+		elsif (key_code = "00011101" AND Y_Pos_sig = Y_Min AND flow_mode = '0' ) then		-- ley is W - go up
+			Y_Motion := "0110111000"; -- magic number = 440
+			X_Motion := "0000000000";
+			key_used_sig <= '1';
+		
+		--in flow mode so we cant wrap around to the other side of the screen set motion vars to 0	
+		elsif (key_code = "00011101" AND Y_Pos_sig = Y_Min AND flow_mode = '1' ) then		-- ley is W - go up
+			Y_Motion := "0000000000"; -- magic number = 440
+			X_Motion := "0000000000";
+			key_used_sig <= '1';									
+		
+		elsif (key_code = "00011011" AND Y_Pos_sig+Step /= Y_Max ) then		-- key S - go down
+			Y_Motion := Step;
+			X_Motion := "0000000000";
+			key_used_sig <= '1';	
+		
+		elsif (key_code = "00011011" AND Y_Pos_sig+Step = Y_Max AND flow_mode = '0' ) then		-- key S - go down
+			Y_Motion := not("0110111000")+1; -- magic number 440 in y direction
+			X_Motion := "0000000000";
+			key_used_sig <= '1';	
+		
+		-- in flow mode now so we can't wrap to the other side of the screen so stay put
+		elsif (key_code = "00011011" AND Y_Pos_sig+Step = Y_Max AND flow_mode = '1' ) then		-- key S - go down
+			Y_Motion := "0000000000"; -- magic number 440 in y direction
+			X_Motion := "0000000000";
+			key_used_sig <= '1';	
+							
+		elsif(key_code = "01011010") then
+			enter_sig <= '1';
+			X_Motion := "0000000000"; 		-- dont move
+			Y_Motion := "0000000000";
+			key_used_sig <= '1';	
+		elsif(key_code = "0000101001") then
+			space_sig <= '1';
+			key_used_sig <= '1';	
+			X_Motion := "0000000000"; 		-- in the middle somewhere, keep going same direction
+			Y_Motion := "0000000000";
+		else
+			X_Motion := "0000000000"; 		-- in the middle somewhere, keep going same direction
+			Y_Motion := "0000000000";
+			key_used_sig <= '0';	
+
+	end if;
+	
+	if(flow_mode = '1') then
+	 --store the would be coordinates (before boundary checking)
+	  Y_Pos_sig <= PosY_in + Y_Motion; 
+      X_Pos_sig <= PosX_in + X_Motion;
+      --store the previous valid coordinates (in case of a boundary checking failure)
+      Y_Pos_prev <= PosY_in;
+	  X_Pos_prev <= PosX_in;
+	else
+	  Y_Pos_sig <= PosY_in+ Y_Motion; 
+	  X_Pos_sig <= PosX_in + X_Motion;
+    end if;
+      
+	elsif(rising_edge(div_clk) AND key_RDY = '0') then
+		key_used_sig <= '0';
+--		space_sig <= '0';
+--		enter_sig <= '0';
+	end if;
+
+end process;
+	
+enter <= enter_sig;		
+key_used <= key_used_sig;
+space_used <= space_sig;
+
+PosX <= X_Pos_sig;
+PosY <= Y_Pos_sig;
+PrevPosX <= X_Pos_prev;
+PrevPosY <= Y_Pos_prev;
+
+
+
+end Behavioral;

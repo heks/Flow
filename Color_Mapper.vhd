@@ -1,0 +1,345 @@
+---------------------------------------------------------------------------
+--    Color_Mapper.vhd                                                   --
+--    Stephen Kempf                                                      --
+--    3-1-06                                                             --
+--												 --
+--    Modified by David Kesler - 7-16-08						 --
+--                                                                       --
+--    Fall 2007 Distribution                                             --
+--                                                                       --
+--    For use with ECE 385 Lab 9                                         --
+--    University of Illinois ECE Department                              --
+---------------------------------------------------------------------------
+
+library IEEE;
+library work;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use work.custom_flow.all;
+
+
+entity Color_Mapper is
+   Port ( DrawX : in std_logic_vector(9 downto 0);
+          DrawY : in std_logic_vector(9 downto 0);
+          --LEVEL UNIT
+ --         blk0_x, blk0_y, blk1_x, blk1_y : in BLOCKS; -- first set of blocks (recieved from the level)          
+          Red   : out std_logic_vector(9 downto 0);
+          Green : out std_logic_vector(9 downto 0);
+          Blue  : out std_logic_vector(9 downto 0);
+          -- SPECTATE UNIT
+          SpecX, SpecY : in std_logic_vector(9 downto 0); -- CURRENT SPECTATE COORDS
+          mode : in std_logic; -- ON/OFF SIGNAL can be in flow/spec mode
+          -- FLOW UNIT (DYNAMIC REG)
+          valid_coords : in integer range 0 to 35;
+          Data_In_x, Data_In_y : in REG; -- data
+          color : in integer range 0 to 11;
+          -- MEM UNIT
+          Load_En, clk, Reset : in std_logic;
+                    vga_clk : in std_logic;
+          str_flag : out std_logic;
+          del_flag : out std_logic;
+          PosX, PosY : in std_logic_vector(9 downto 0);
+		  calculate : in std_logic;
+		  delete_pipe : in std_logic
+		  --OUTPUT OF STORED PIPES
+--		   pipe0_x, pipe1_x,pipe2_x, pipe3_x,pipe4_x, pipe5_x, pipe6_x, pipe7_x,pipe8_x, pipe9_x,pipe10_x, pipe11_x : out REG;
+--		   pipe0_y, pipe1_y,pipe2_y, pipe3_y,pipe4_y, pipe5_y, pipe6_y, pipe7_y,pipe8_y, pipe9_y,pipe10_y, pipe11_y : out REG;
+--		   coordinate_storage : out COORDS
+          );
+end Color_Mapper;
+
+architecture Behavioral of Color_Mapper is
+
+signal BLOCK_DRAW : std_logic_vector(11 downto 0) := "000000000000";	-- 12 blocks either with we draw or we dont.
+--predefined colors 
+signal grid,spec,block_on,flow,flow_check : std_logic := '0';
+signal green_sig, red_sig, blue_sig : std_logic_vector(9 downto 0) := "0000000000";
+
+--MEM UNIT STUFF
+signal count : integer range 0 to 11 := 0;
+
+signal flow0_x, flow1_x,flow2_x, flow3_x,flow4_x, flow5_x : REG := (others=> (others=>'0'));
+signal flow6_x, flow7_x,flow8_x, flow9_x,flow10_x, flow11_x : REG := (others=> (others=>'0'));
+
+signal flow0_y, flow1_y,flow2_y, flow3_y,flow4_y, flow5_y : REG := (others=> (others=>'0'));
+signal flow6_y, flow7_y,flow8_y, flow9_y,flow10_y, flow11_y : REG := (others=> (others=>'0'));
+
+signal valid_coords_storage : COORDS := (0,0,0,0,0,0,0,0,0,0,0,0); 
+ 
+
+signal stored_flow : std_logic := '0';
+signal green_sig_1, red_sig_1, blue_sig_1, blue_sig_2, red_sig_2, green_sig_2 : std_logic_vector(9 downto 0) := "0000000000";
+
+
+begin
+
+-- this process determines if we are either in spec mode/flow mode and then draws the approriate items
+-- spec_mode is select "snake" mode.
+-- flow mode is when you selected a pipe and are controlling movement of a snake
+  DRAW_SPEC : process( mode, SpecX, SpecY, DrawX, DrawY,valid_coords,Data_In_x,Data_In_y,vga_clk )
+  begin
+    if(mode ='0' and rising_edge(vga_clk)) then
+       if( (DrawX > SpecX) AND (DrawX < SpecX+BOX_WIDTH) AND (DrawY > SpecY) AND (DrawY < SpecY+BOX_HEIGHT) ) then
+       --    (DrawX < SpecX+2) AND (DrawX > SpecX+BOX_WIDTH-2) AND (DrawY < SpecY+2) AND (DrawY > SpecY+BOX_HEIGHT-2)) then
+			spec <= '1';
+       else
+           spec <= '0';
+       end if;
+    elsif(mode ='1' and rising_edge(vga_clk)) then
+		flow <= '0'; -- these get overwritten later.
+		for I in 0 to 30 loop
+			if( I < valid_coords AND (DrawX > Data_In_x(I)) AND (DrawX < Data_In_x(I)+BOX_WIDTH) AND (DrawY > Data_In_y(I)) AND (DrawY < Data_In_y(I)+BOX_HEIGHT)) then
+				flow <= '1';
+				exit;
+			elsif(I >= valid_coords) then
+				exit;
+			end if;
+		end loop;
+    end if;
+  end process DRAW_SPEC;
+
+  -- this process draws the horizontal and vertical grid lines of the board as awell as the black boundaries
+  DRAW_GRID : process( DrawX, DrawY,vga_clk )
+  begin
+  if(rising_edge(vga_clk)) then
+	if(  DrawX = 120 OR DrawY = 40 OR DrawX = 160 OR DrawY = 80 OR DrawX = 200 OR DrawY = 120 OR
+	    DrawX = 240 OR DrawY = 160 OR DrawX = 280 OR DrawY = 200 OR DrawX = 320 OR DrawY = 240 OR DrawX = 360 OR DrawY = 280 OR 
+	    DrawX = 400 OR DrawY = 320 OR DrawX = 440 OR DrawY = 360 OR DrawX = 480 OR DrawY = 400 OR
+	    DrawX = 520 OR DrawY = 440 OR DrawY = 480 OR DrawX <= 80 OR DrawX >= 560) then
+	    grid <= '1';
+	else
+	    grid <= '0';
+	end if;
+end if;
+  end process DRAW_GRID;
+
+	-- this process draws the stable blocks which make up the level
+  Block_on_proc : process ( DrawX, DrawY,vga_clk )
+  begin
+	if(rising_edge(vga_clk)) then
+		block_on <= '0';
+		for I in 0 to 11 loop
+			if( ((DrawX > blk0_x(I)) AND (DrawX < blk0_x(I)+BOX_WIDTH) AND (DrawY > blk0_y(I)) AND (DrawY < blk0_y(I)+BOX_HEIGHT))
+			OR ((DrawX > blk1_x(I)) AND (DrawX < blk1_x(I)+BOX_WIDTH) AND (DrawY > blk1_y(I)) AND (DrawY < blk1_y(I)+BOX_HEIGHT)) ) then
+				block_on <= '1';
+				red_sig <= data(I)(0);
+				green_sig <= data(I)(1);
+				blue_sig <= data(I)(2);
+				exit;
+			end if;
+		end loop;
+	end if;
+  end process Block_on_proc;
+  
+  -- process thats puts every thing together and determines what to draw/ what to send to the RGB Monitor input
+  BLOCK_Display : process (BLOCK_DRAW,vga_clk,grid,spec,block_on,color,flow,red_sig,green_sig,blue_sig, red_sig_1, blue_sig_1,green_sig_1,stored_flow )
+  begin
+  	if(rising_edge(vga_clk)) then
+	  if(spec = '1') then
+		Red <= "1111111100";
+	    Green <= "0000000000";
+	    Blue <= "1111111100";
+	   elsif(flow = '1') then
+	    Red <= Data(color)(0);
+	    Green <= Data(color)(1);
+	    Blue <= Data(color)(2);
+	  elsif(stored_flow = '1') then
+		Red <= red_sig_1; 
+		Green<= green_sig_1;
+		Blue<= blue_sig_1;
+	  elsif(block_on ='1') then
+		Red <= red_sig;
+		Green <= green_sig;
+		Blue <= blue_sig;
+	  elsif(grid ='1') then
+		Red <= "0000000000";
+	    Green <= "0000000000";
+	    Blue <= "0000000000";
+--	  elsif(win = '1') then;
+--		Red <= red_sig_2
+--	    Green <= green_sig_2;
+--	    Blue <= blue_sig_2;
+	  else
+	    Red <= "1111010100";
+	    Green <= "1111010100";
+	    Blue <= "1111010100"; 
+	  end if;
+end if;
+  end process BLOCK_Display;
+  
+-- this process determines which, if any, existing flows that are in memory and sets the appropriate RGB signals which get drawn later
+DRAW_FLOWS : process(DrawX,DrawY,flow0_x, flow1_x,flow2_x, flow3_x,flow4_x, flow5_x,flow6_x, flow7_x,flow8_x, flow9_x,flow10_x, flow11_x,
+ flow0_y, flow1_y,flow2_y,vga_clk, flow3_y,flow4_y, flow5_y, flow6_y, flow7_y,flow8_y, flow9_y,flow10_y, flow11_y, valid_coords_storage) 
+begin
+    if(rising_edge(vga_clk)) then
+	    stored_flow <= '0';
+
+	for I in 0 to 20 loop
+		if( (I < valid_coords_storage(0)) AND(DrawX > flow0_x(I)) AND (DrawX < flow0_x(I)+BOX_WIDTH) AND (DrawY > flow0_y(I)) AND (DrawY < flow0_y(I)+BOX_HEIGHT)) then
+				stored_flow <= '1';
+				red_sig_1 <= data(0)(0);
+				green_sig_1 <= data(0)(1);
+				blue_sig_1 <= data(0)(2);
+				exit;
+		elsif( (I < valid_coords_storage(1)) AND(DrawX > flow1_x(I)) AND (DrawX < flow1_x(I)+BOX_WIDTH) AND (DrawY > flow1_y(I)) AND (DrawY < flow1_y(I)+BOX_HEIGHT)) then
+				stored_flow <= '1';
+				red_sig_1 <= data(1)(0);
+				green_sig_1 <= data(1)(1);
+				blue_sig_1 <= data(1)(2);
+				exit;
+		elsif((I < valid_coords_storage(2)) AND (DrawX > flow2_x(I)) AND (DrawX < flow2_x(I)+BOX_WIDTH) AND (DrawY > flow2_y(I)) AND (DrawY < flow2_y(I)+BOX_HEIGHT)) then
+				stored_flow <= '1';
+				red_sig_1 <= data(2)(0);
+				green_sig_1 <= data(2)(1);
+				blue_sig_1 <= data(2)(2);
+				exit;
+		elsif( (I < valid_coords_storage(3)) AND(DrawX > flow3_x(I)) AND (DrawX < flow3_x(I)+BOX_WIDTH) AND (DrawY > flow3_y(I)) AND (DrawY < flow3_y(I)+BOX_HEIGHT)) then
+				stored_flow <= '1';
+				red_sig_1 <= data(3)(0);
+				green_sig_1 <= data(3)(1);
+				blue_sig_1 <= data(3)(2);
+				exit;
+		elsif( (I < valid_coords_storage(4)) AND(DrawX > flow4_x(I)) AND (DrawX < flow4_x(I)+BOX_WIDTH) AND (DrawY > flow4_y(I)) AND (DrawY < flow4_y(I)+BOX_HEIGHT)) then
+				stored_flow <= '1';
+				red_sig_1 <= data(4)(0);
+				green_sig_1 <= data(4)(1);
+				blue_sig_1 <= data(4)(2);
+				exit;
+		elsif((I < valid_coords_storage(5)) AND (DrawX > flow5_x(I)) AND (DrawX < flow5_x(I)+BOX_WIDTH) AND (DrawY > flow5_y(I)) AND (DrawY < flow5_y(I)+BOX_HEIGHT)) then
+				stored_flow <= '1';
+				red_sig_1 <= data(5)(0);
+				green_sig_1 <= data(5)(1);
+				blue_sig_1 <= data(5)(2);
+				exit;
+		elsif( (I < valid_coords_storage(6)) AND(DrawX > flow6_x(I)) AND (DrawX < flow6_x(I)+BOX_WIDTH) AND (DrawY > flow6_y(I)) AND (DrawY < flow6_y(I)+BOX_HEIGHT)) then
+				stored_flow <= '1';
+				red_sig_1 <= data(6)(0);
+				green_sig_1 <= data(6)(1);
+				blue_sig_1 <= data(6)(2);
+				exit;
+		elsif((I < valid_coords_storage(7)) AND (DrawX > flow7_x(I)) AND (DrawX < flow7_x(I)+BOX_WIDTH) AND (DrawY > flow7_y(I)) AND (DrawY < flow7_y(I)+BOX_HEIGHT)) then
+				stored_flow <= '1';
+				red_sig_1 <= data(7)(0);
+				green_sig_1 <= data(7)(1);
+				blue_sig_1 <= data(7)(2);
+				exit;
+		elsif( (I < valid_coords_storage(8)) AND (DrawX > flow8_x(I)) AND (DrawX < flow8_x(I)+BOX_WIDTH) AND (DrawY > flow8_y(I)) AND (DrawY < flow8_y(I)+BOX_HEIGHT)) then
+				stored_flow <= '1';
+				red_sig_1 <= data(8)(0);
+				green_sig_1 <= data(8)(1);
+				blue_sig_1 <= data(8)(2);
+				exit;
+		elsif((I < valid_coords_storage(9)) AND (DrawX > flow9_x(I)) AND (DrawX < flow9_x(I)+BOX_WIDTH) AND (DrawY > flow9_y(I)) AND (DrawY < flow9_y(I)+BOX_HEIGHT)) then
+				stored_flow <= '1';
+				red_sig_1 <= data(9)(0);
+				green_sig_1 <= data(9)(1);
+				blue_sig_1 <= data(9)(2);
+				exit;
+		elsif( (I < valid_coords_storage(10)) AND(DrawX > flow10_x(I)) AND (DrawX < flow10_x(I)+BOX_WIDTH) AND (DrawY > flow10_y(I)) AND (DrawY < flow10_y(I)+BOX_HEIGHT)) then
+				stored_flow <= '1';
+				red_sig_1 <= data(10)(0);
+				green_sig_1 <= data(10)(1);
+				blue_sig_1 <= data(10)(2);
+			exit;
+		elsif( (I < valid_coords_storage(11)) AND(DrawX > flow11_x(I)) AND (DrawX < flow11_x(I)+BOX_WIDTH) AND (DrawY > flow11_y(I)) AND (DrawY < flow11_y(I)+BOX_HEIGHT)) then
+				stored_flow <= '1';
+				red_sig_1 <= data(11)(0);
+				green_sig_1 <= data(11)(1);
+				blue_sig_1 <= data(11)(2);
+				exit;
+		end if;
+	end loop;
+	end if;
+end process;
+  
+  --MEM UNIT OPERATION
+  operate_reg : process(clk, Load_En, Reset, color, Data_In_x, Data_In_y, valid_coords_storage, delete_pipe)
+	begin
+		if(Reset = '1') then
+			valid_coords_storage <= (0,0,0,0,0,0,0,0,0,0,0,0);
+		else
+			if(rising_edge(clk) and Load_En = '1') then
+				case color is
+						when 0 =>
+						flow0_x <= Data_In_x;
+						flow0_y <= Data_In_y;
+						when 1 =>
+						flow1_x <= Data_In_x;
+						flow1_y <= Data_In_y;
+						when 2 =>
+						flow2_x <= Data_In_x;
+						flow2_y <= Data_In_y;
+						when 3 =>
+						flow3_x <= Data_In_x;
+						flow3_y <= Data_In_y;
+						when 4 =>
+						flow4_x <= Data_In_x;
+						flow4_y <= Data_In_y;						
+						when 5 =>
+						flow5_x <= Data_In_x;
+						flow5_y <= Data_In_y;						
+						when 6 =>
+						flow6_x <= Data_In_x;
+						flow6_y <= Data_In_y;
+						when 7 =>
+						flow7_x <= Data_In_x;
+						flow7_y <= Data_In_y;
+						when 8 =>
+						flow8_x <= Data_In_x;
+						flow8_y <= Data_In_y;
+						when 9 =>
+						flow9_x <= Data_In_x;
+						flow9_y <= Data_In_y;
+						when 10 =>
+						flow10_x <= Data_In_x;
+						flow10_y <= Data_In_y;
+						when 11 =>
+						flow11_x <= Data_In_x;
+						flow11_y <= Data_In_y;
+						when others =>
+							NULL;
+					 end case;
+				valid_coords_storage(color) <= valid_coords;
+			elsif(rising_edge(clk) and delete_pipe = '1') then
+				valid_coords_storage(color) <= 0;
+			end if;
+		end if;
+	end process;
+
+
+-- this checks for a move either onto the pipe itself or an existing pipe already store in memory
+check_input : process(clk, Data_In_x, Data_In_y, valid_coords_storage,flow0_x, flow1_x,flow2_x, flow3_x,flow4_x, flow5_x,flow6_x, flow7_x,flow8_x, flow9_x,flow10_x, flow11_x,
+						flow0_y, calculate, flow1_y,flow2_y,flow3_y,flow4_y, flow5_y, flow6_y, flow7_y,flow8_y, flow9_y,flow10_y, flow11_y, PosX, PosY )
+begin
+if(rising_edge(clk) and calculate = '1') then 
+	str_flag <= '0';
+	del_flag <= '0';
+	if((PosX = Data_in_x(valid_coords-2) and PosY = Data_in_y(valid_coords-2))) then
+		del_flag <= '1';
+	else
+		for I in 0 to 25 loop
+			if(((I <= valid_coords-4) AND (PosX = Data_in_x(valid_coords-I-4)) AND (PosY = Data_in_y(valid_coords-I-4))) OR
+			((I < valid_coords_storage(0)) AND (PosX = flow0_x(I)) AND  (PosY = flow0_y(I))) OR
+			((I < valid_coords_storage(1)) AND (PosX = flow1_x(I)) AND  (PosY = flow1_y(I))) OR
+			((I < valid_coords_storage(2)) AND (PosX = flow2_x(I)) AND  (PosY = flow2_y(I))) OR
+			((I < valid_coords_storage(3)) AND (PosX = flow3_x(I)) AND  (PosY = flow3_y(I))) OR
+			((I < valid_coords_storage(4)) AND (PosX = flow4_x(I)) AND  (PosY = flow4_y(I))) OR
+			((I < valid_coords_storage(5)) AND (PosX = flow5_x(I)) AND  (PosY = flow5_y(I))) OR
+			((I < valid_coords_storage(6)) AND (PosX = flow6_x(I)) AND  (PosY = flow6_y(I))) OR
+			((I < valid_coords_storage(7)) AND (PosX = flow7_x(I)) AND  (PosY = flow7_y(I))) OR
+			((I < valid_coords_storage(8)) AND (PosX = flow8_x(I)) AND  (PosY = flow8_y(I))) OR
+			((I < valid_coords_storage(9)) AND (PosX = flow9_x(I)) AND  (PosY = flow9_y(I))) OR
+			((I < valid_coords_storage(10)) AND (PosX = flow10_x(I)) AND  (PosY = flow10_y(I))) OR
+			((I < valid_coords_storage(11)) AND (PosX = flow11_x(I)) AND  (PosY = flow11_y(I)))) then
+						str_flag <= '1';
+						exit;	
+			end if;
+		end loop;
+	end if;
+end if;
+end process;
+
+
+	
+end Behavioral;

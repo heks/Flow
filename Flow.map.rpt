@@ -1,0 +1,561 @@
+Analysis & Synthesis report for Flow
+Fri Dec 07 15:43:00 2012
+Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Analysis & Synthesis Source Files Read
+  5. Analysis & Synthesis Resource Usage Summary
+  6. Analysis & Synthesis Resource Utilization by Entity
+  7. State Machine - |Flow|InputController:inst7|State
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Inverted Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2010 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                      ;
++------------------------------------+----------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Fri Dec 07 15:43:00 2012        ;
+; Quartus II Version                 ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
+; Revision Name                      ; Flow                                         ;
+; Top-level Entity Name              ; Flow                                         ;
+; Family                             ; Cyclone II                                   ;
+; Total logic elements               ; 33,295                                       ;
+;     Total combinational functions  ; 32,453                                       ;
+;     Dedicated logic registers      ; 7,287                                        ;
+; Total registers                    ; 7287                                         ;
+; Total pins                         ; 54                                           ;
+; Total virtual pins                 ; 0                                            ;
+; Total memory bits                  ; 0                                            ;
+; Embedded Multiplier 9-bit elements ; 0                                            ;
+; Total PLLs                         ; 0                                            ;
++------------------------------------+----------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C35F672C6       ;                    ;
+; Top-level entity name                                                      ; Flow               ; Flow               ;
+; Family name                                                                ; Cyclone II         ; Stratix II         ;
+; Use Generated Physical Constraints File                                    ; Off                ;                    ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Show Parameter Settings Tables in Synthesis Report                         ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                       ;
++----------------------------------+-----------------+------------------------------------+------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path       ;
++----------------------------------+-----------------+------------------------------------+------------------------------------+
+; Flow.bdf                         ; yes             ; User Block Diagram/Schematic File  ; C:/ece388/Flow/Flow.bdf            ;
+; clk_div.vhd                      ; yes             ; User VHDL File                     ; C:/ece388/Flow/clk_div.vhd         ;
+; InputController.vhd              ; yes             ; User VHDL File                     ; C:/ece388/Flow/InputController.vhd ;
+; dynamic_reg.vhd                  ; yes             ; User VHDL File                     ; C:/ece388/Flow/dynamic_reg.vhd     ;
+; Color_Mapper.vhd                 ; yes             ; User VHDL File                     ; C:/ece388/Flow/Color_Mapper.vhd    ;
+; vga_controller.vhd               ; yes             ; User VHDL File                     ; C:/ece388/Flow/vga_controller.vhd  ;
+; custom_flow.vhd                  ; yes             ; User VHDL File                     ; C:/ece388/Flow/custom_flow.vhd     ;
+; controller.vhd                   ; yes             ; User VHDL File                     ; C:/ece388/Flow/controller.vhd      ;
+; keyboardVHDL.vhd                 ; yes             ; User VHDL File                     ; C:/ece388/Flow/keyboardVHDL.vhd    ;
+; logic_control.vhd                ; yes             ; User VHDL File                     ; C:/ece388/Flow/logic_control.vhd   ;
+; hexdriver.vhd                    ; yes             ; Auto-Found VHDL File               ; C:/ece388/Flow/hexdriver.vhd       ;
++----------------------------------+-----------------+------------------------------------+------------------------------------+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                   ;
++---------------------------------------------+---------------------------------+
+; Resource                                    ; Usage                           ;
++---------------------------------------------+---------------------------------+
+; Estimated Total logic elements              ; 33,295                          ;
+;                                             ;                                 ;
+; Total combinational functions               ; 32453                           ;
+; Logic element usage by number of LUT inputs ;                                 ;
+;     -- 4 input functions                    ; 11690                           ;
+;     -- 3 input functions                    ; 16442                           ;
+;     -- <=2 input functions                  ; 4321                            ;
+;                                             ;                                 ;
+; Logic elements by mode                      ;                                 ;
+;     -- normal mode                          ; 19320                           ;
+;     -- arithmetic mode                      ; 13133                           ;
+;                                             ;                                 ;
+; Total registers                             ; 7287                            ;
+;     -- Dedicated logic registers            ; 7287                            ;
+;     -- I/O registers                        ; 0                               ;
+;                                             ;                                 ;
+; I/O pins                                    ; 54                              ;
+; Maximum fan-out node                        ; clk_div:inst1|frame_clk_div[14] ;
+; Maximum fan-out                             ; 7110                            ;
+; Total fan-out                               ; 120660                          ;
+; Average fan-out                             ; 3.03                            ;
++---------------------------------------------+---------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                   ;
++-----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------+--------------+
+; Compilation Hierarchy Node  ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name          ; Library Name ;
++-----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------+--------------+
+; |Flow                       ; 32453 (3)         ; 7287 (0)     ; 0           ; 0            ; 0       ; 0         ; 54   ; 0            ; |Flow                        ; work         ;
+;    |Color_Mapper:inst|      ; 31846 (31846)     ; 6363 (6363)  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Flow|Color_Mapper:inst      ;              ;
+;    |HexDriver:inst4|        ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Flow|HexDriver:inst4        ;              ;
+;    |InputController:inst7|  ; 19 (19)           ; 13 (13)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Flow|InputController:inst7  ;              ;
+;    |clk_div:inst1|          ; 23 (23)           ; 23 (23)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Flow|clk_div:inst1          ;              ;
+;    |controller:inst19|      ; 71 (71)           ; 43 (43)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Flow|controller:inst19      ;              ;
+;    |keyboardVhdl:inst25|    ; 22 (22)           ; 41 (41)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Flow|keyboardVhdl:inst25    ;              ;
+;    |logic_control:inst3|    ; 323 (323)         ; 56 (56)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Flow|logic_control:inst3    ;              ;
+;    |single_reg_unit:inst16| ; 96 (96)           ; 726 (726)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Flow|single_reg_unit:inst16 ;              ;
+;    |vga_controller:inst2|   ; 43 (43)           ; 22 (22)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Flow|vga_controller:inst2   ;              ;
++-----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |Flow|InputController:inst7|State                                                                                                                       ;
++---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+
+; Name    ; State.R ; State.T ; State.V ; State.X ; State.Z ; State.L ; State.H ; State.K ; State.J ; State.G ; State.F ; State.E ; State.D ; State.C ; State.B ; State.A ;
++---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+
+; State.A ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ;
+; State.B ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 1       ;
+; State.C ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 1       ;
+; State.D ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 1       ;
+; State.E ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 1       ;
+; State.F ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; State.G ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; State.J ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; State.K ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; State.H ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; State.L ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; State.Z ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; State.X ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; State.V ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; State.T ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; State.R ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
++---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+
+
+
++--------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                         ;
++-----------------------------------------+--------------------------------------------------+
+; Register name                           ; Reason for Removal                               ;
++-----------------------------------------+--------------------------------------------------+
+; Color_Mapper:inst|blue_sig[0]           ; Stuck at GND due to stuck port data_in           ;
+; Color_Mapper:inst|blue_sig_1[0..1]      ; Stuck at GND due to stuck port data_in           ;
+; Color_Mapper:inst|green_sig_1[0..1]     ; Stuck at GND due to stuck port data_in           ;
+; Color_Mapper:inst|red_sig_1[0..1]       ; Stuck at GND due to stuck port data_in           ;
+; Color_Mapper:inst|blue_sig[1]           ; Stuck at GND due to stuck port data_in           ;
+; Color_Mapper:inst|green_sig[0..1]       ; Stuck at GND due to stuck port data_in           ;
+; Color_Mapper:inst|red_sig[0..1]         ; Stuck at GND due to stuck port data_in           ;
+; Color_Mapper:inst|Blue[0..1]            ; Stuck at GND due to stuck port data_in           ;
+; Color_Mapper:inst|Green[0..1]           ; Stuck at GND due to stuck port data_in           ;
+; Color_Mapper:inst|Red[0..1]             ; Stuck at GND due to stuck port data_in           ;
+; logic_control:inst3|temp_block[5..31]   ; Stuck at GND due to stuck port data_in           ;
+; Color_Mapper:inst|blue_sig_1[3,5,8]     ; Merged with Color_Mapper:inst|blue_sig_1[2]      ;
+; Color_Mapper:inst|blue_sig_1[6..7]      ; Merged with Color_Mapper:inst|blue_sig_1[4]      ;
+; Color_Mapper:inst|green_sig_1[4,7]      ; Merged with Color_Mapper:inst|green_sig_1[2]     ;
+; Color_Mapper:inst|green_sig_1[5..6]     ; Merged with Color_Mapper:inst|green_sig_1[3]     ;
+; Color_Mapper:inst|red_sig_1[3,5]        ; Merged with Color_Mapper:inst|red_sig_1[2]       ;
+; Color_Mapper:inst|red_sig_1[6..8]       ; Merged with Color_Mapper:inst|red_sig_1[4]       ;
+; Color_Mapper:inst|blue_sig[3,5,8]       ; Merged with Color_Mapper:inst|blue_sig[2]        ;
+; Color_Mapper:inst|blue_sig[6..7]        ; Merged with Color_Mapper:inst|blue_sig[4]        ;
+; Color_Mapper:inst|green_sig[4,7]        ; Merged with Color_Mapper:inst|green_sig[2]       ;
+; Color_Mapper:inst|green_sig[5..6]       ; Merged with Color_Mapper:inst|green_sig[3]       ;
+; Color_Mapper:inst|red_sig[3,5]          ; Merged with Color_Mapper:inst|red_sig[2]         ;
+; Color_Mapper:inst|red_sig[6..8]         ; Merged with Color_Mapper:inst|red_sig[4]         ;
+; logic_control:inst3|chosen_block[5..30] ; Merged with logic_control:inst3|chosen_block[31] ;
+; logic_control:inst3|chosen_block[31]    ; Stuck at GND due to stuck port data_in           ;
+; InputController:inst7|State.B           ; Lost fanout                                      ;
+; InputController:inst7|State.K           ; Lost fanout                                      ;
+; InputController:inst7|State.V           ; Lost fanout                                      ;
+; single_reg_unit:inst16|count[6..31]     ; Lost fanout                                      ;
+; Total Number of Removed Registers = 129 ;                                                  ;
++-----------------------------------------+--------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 7287  ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 10    ;
+; Number of registers using Asynchronous Clear ; 923   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 948   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; controller:inst19|X_Pos_sig[6]          ; 357     ;
+; controller:inst19|X_Pos_sig[4]          ; 350     ;
+; keyboardVhdl:inst25|shiftRegSig2[1]     ; 2       ;
+; keyboardVhdl:inst25|shiftRegSig2[2]     ; 3       ;
+; keyboardVhdl:inst25|shiftRegSig2[3]     ; 3       ;
+; keyboardVhdl:inst25|shiftRegSig2[4]     ; 3       ;
+; keyboardVhdl:inst25|shiftRegSig2[5]     ; 3       ;
+; keyboardVhdl:inst25|shiftRegSig2[6]     ; 3       ;
+; keyboardVhdl:inst25|shiftRegSig2[7]     ; 3       ;
+; keyboardVhdl:inst25|shiftRegSig2[8]     ; 3       ;
+; keyboardVhdl:inst25|shiftRegSig2[9]     ; 1       ;
+; logic_control:inst3|chosen_block[4]     ; 9       ;
+; keyboardVhdl:inst25|shiftRegSig2[10]    ; 1       ;
+; logic_control:inst3|temp_block[4]       ; 1       ;
+; keyboardVhdl:inst25|shiftRegSig1[0]     ; 1       ;
+; Total number of inverted registers = 15 ;         ;
++-----------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------+
+; 3:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |Flow|logic_control:inst3|chosen_block[1]           ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |Flow|logic_control:inst3|flow_count[2]             ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|count[13]              ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |Flow|keyboardVhdl:inst25|newKey                    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |Flow|keyboardVhdl:inst25|keyCode[5]                ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |Flow|Color_Mapper:inst|Red[2]                      ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |Flow|Color_Mapper:inst|valid_coords_storage[11][2] ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |Flow|Color_Mapper:inst|valid_coords_storage[10][4] ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |Flow|Color_Mapper:inst|valid_coords_storage[9][2]  ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |Flow|Color_Mapper:inst|valid_coords_storage[8][2]  ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |Flow|Color_Mapper:inst|valid_coords_storage[7][0]  ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |Flow|Color_Mapper:inst|valid_coords_storage[6][2]  ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |Flow|Color_Mapper:inst|valid_coords_storage[5][5]  ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |Flow|Color_Mapper:inst|valid_coords_storage[4][0]  ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |Flow|Color_Mapper:inst|valid_coords_storage[3][4]  ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |Flow|Color_Mapper:inst|valid_coords_storage[2][0]  ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |Flow|Color_Mapper:inst|valid_coords_storage[1][5]  ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |Flow|Color_Mapper:inst|valid_coords_storage[0][0]  ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[35][8]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[34][6]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[33][6]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[32][5]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[31][2]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[30][2]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[29][5]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[28][3]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[27][1]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[26][9]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[25][9]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[24][8]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[23][9]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[22][9]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[21][8]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[20][2]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[19][2]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[18][0]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[17][8]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[16][0]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[15][8]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[14][9]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[13][9]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[12][0]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[11][9]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[10][9]     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[9][9]      ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[8][0]      ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[7][7]      ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[6][2]      ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[5][0]      ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[4][0]      ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[3][2]      ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[2][0]      ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_x[1][8]      ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |Flow|single_reg_unit:inst16|reg_value_y[0][5]      ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |Flow|Color_Mapper:inst|red_sig[9]                  ;
+; 7:1                ; 520 bits  ; 2080 LEs      ; 0 LEs                ; 2080 LEs               ; Yes        ; |Flow|Color_Mapper:inst|flow1_x[18][9]              ;
+; 7:1                ; 520 bits  ; 2080 LEs      ; 0 LEs                ; 2080 LEs               ; Yes        ; |Flow|Color_Mapper:inst|flow3_y[13][3]              ;
+; 7:1                ; 520 bits  ; 2080 LEs      ; 0 LEs                ; 2080 LEs               ; Yes        ; |Flow|Color_Mapper:inst|flow0_x[9][8]               ;
+; 7:1                ; 520 bits  ; 2080 LEs      ; 0 LEs                ; 2080 LEs               ; Yes        ; |Flow|Color_Mapper:inst|flow2_y[18][9]              ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Flow|Color_Mapper:inst|green_sig[8]                ;
+; 8:1                ; 20 bits   ; 100 LEs       ; 20 LEs               ; 80 LEs                 ; Yes        ; |Flow|logic_control:inst3|F_PosX[3]                 ;
+; 16:1               ; 2 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; Yes        ; |Flow|Color_Mapper:inst|Red[9]                      ;
+; 24:1               ; 2 bits    ; 32 LEs        ; 28 LEs               ; 4 LEs                  ; Yes        ; |Flow|logic_control:inst3|valid_delete_flow         ;
+; 84:1               ; 2 bits    ; 112 LEs       ; 112 LEs              ; 0 LEs                  ; Yes        ; |Flow|Color_Mapper:inst|red_sig_1[2]                ;
+; 189:1              ; 2 bits    ; 252 LEs       ; 252 LEs              ; 0 LEs                  ; Yes        ; |Flow|Color_Mapper:inst|green_sig_1[8]              ;
+; 210:1              ; 2 bits    ; 280 LEs       ; 280 LEs              ; 0 LEs                  ; Yes        ; |Flow|Color_Mapper:inst|green_sig_1[2]              ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 9 LEs                ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Blue                        ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |Flow|controller:inst19|X_Motion                    ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |Flow|controller:inst19|Y_Motion                    ;
+; 9:1                ; 20 bits   ; 120 LEs       ; 120 LEs              ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6270                     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6440                     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6590                     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6753                     ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6356                     ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6673                     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6313                     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6453                     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6522                     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6641                     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6789                     ;
+; 6:1                ; 20 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6257                     ;
+; 6:1                ; 20 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6306                     ;
+; 6:1                ; 20 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6337                     ;
+; 6:1                ; 20 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6409                     ;
+; 6:1                ; 20 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6478                     ;
+; 6:1                ; 20 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6560                     ;
+; 6:1                ; 20 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6612                     ;
+; 6:1                ; 20 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6662                     ;
+; 6:1                ; 20 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6724                     ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6386                     ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6426                     ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6493                     ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6704                     ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6739                     ;
+; 8:1                ; 20 bits   ; 100 LEs       ; 100 LEs              ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6531                     ;
+; 8:1                ; 20 bits   ; 100 LEs       ; 100 LEs              ; 0 LEs                  ; No         ; |Flow|Color_Mapper:inst|Mux6579                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Analysis & Synthesis
+    Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+    Info: Processing started: Fri Dec 07 15:39:53 2012
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Flow -c Flow
+Info: Found 1 design units, including 1 entities, in source file flow.bdf
+    Info: Found entity 1: Flow
+Info: Found 2 design units, including 1 entities, in source file clk_div.vhd
+    Info: Found design unit 1: clk_div-behavior
+    Info: Found entity 1: clk_div
+Info: Found 2 design units, including 1 entities, in source file inputcontroller.vhd
+    Info: Found design unit 1: InputController-Behavioral
+    Info: Found entity 1: InputController
+Info: Found 2 design units, including 1 entities, in source file coordinate_holder.vhd
+    Info: Found design unit 1: coordinate_holder-Behavioral
+    Info: Found entity 1: coordinate_holder
+Info: Found 2 design units, including 1 entities, in source file dynamic_reg.vhd
+    Info: Found design unit 1: single_reg_unit-Behavioral
+    Info: Found entity 1: single_reg_unit
+Info: Found 2 design units, including 1 entities, in source file color_mapper.vhd
+    Info: Found design unit 1: Color_Mapper-Behavioral
+    Info: Found entity 1: Color_Mapper
+Info: Found 2 design units, including 1 entities, in source file vga_controller.vhd
+    Info: Found design unit 1: vga_controller-Behavioral
+    Info: Found entity 1: vga_controller
+Info: Found 2 design units, including 0 entities, in source file custom_flow.vhd
+    Info: Found design unit 1: custom_flow
+    Info: Found design unit 2: custom_flow-body
+Info: Found 2 design units, including 1 entities, in source file controller.vhd
+    Info: Found design unit 1: controller-Behavioral
+    Info: Found entity 1: controller
+Info: Found 2 design units, including 1 entities, in source file keyboardvhdl.vhd
+    Info: Found design unit 1: keyboardVhdl-Behavioral
+    Info: Found entity 1: keyboardVhdl
+Info: Found 2 design units, including 1 entities, in source file logic_control.vhd
+    Info: Found design unit 1: logic_control-Behavioral
+    Info: Found entity 1: logic_control
+Info: Elaborating entity "Flow" for the top level hierarchy
+Info: Elaborating entity "vga_controller" for hierarchy "vga_controller:inst2"
+Info: Elaborating entity "clk_div" for hierarchy "clk_div:inst1"
+Info: Elaborating entity "controller" for hierarchy "controller:inst19"
+Info: Elaborating entity "keyboardVhdl" for hierarchy "keyboardVhdl:inst25"
+Info: Elaborating entity "InputController" for hierarchy "InputController:inst7"
+Warning (10631): VHDL Process Statement warning at InputController.vhd(54): inferring latch(es) for signal or variable "Next_state", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "Next_state.R" at InputController.vhd(54)
+Info (10041): Inferred latch for "Next_state.T" at InputController.vhd(54)
+Info (10041): Inferred latch for "Next_state.V" at InputController.vhd(54)
+Info (10041): Inferred latch for "Next_state.X" at InputController.vhd(54)
+Info (10041): Inferred latch for "Next_state.Z" at InputController.vhd(54)
+Info (10041): Inferred latch for "Next_state.L" at InputController.vhd(54)
+Info (10041): Inferred latch for "Next_state.H" at InputController.vhd(54)
+Info (10041): Inferred latch for "Next_state.K" at InputController.vhd(54)
+Info (10041): Inferred latch for "Next_state.J" at InputController.vhd(54)
+Info (10041): Inferred latch for "Next_state.G" at InputController.vhd(54)
+Info (10041): Inferred latch for "Next_state.F" at InputController.vhd(54)
+Info (10041): Inferred latch for "Next_state.E" at InputController.vhd(54)
+Info (10041): Inferred latch for "Next_state.D" at InputController.vhd(54)
+Info (10041): Inferred latch for "Next_state.C" at InputController.vhd(54)
+Info (10041): Inferred latch for "Next_state.B" at InputController.vhd(54)
+Info (10041): Inferred latch for "Next_state.A" at InputController.vhd(54)
+Info: Elaborating entity "logic_control" for hierarchy "logic_control:inst3"
+Info: Elaborating entity "Color_Mapper" for hierarchy "Color_Mapper:inst"
+Info: Elaborating entity "single_reg_unit" for hierarchy "single_reg_unit:inst16"
+Warning: Using design file hexdriver.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info: Found design unit 1: HexDriver-Behavioral
+    Info: Found entity 1: HexDriver
+Info: Elaborating entity "HexDriver" for hierarchy "HexDriver:inst4"
+Warning: LATCH primitive "InputController:inst7|Next_state.X_289" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.T_277" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.R_269" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.G_333" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.F_341" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.E_349" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.D_357" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.C_365" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.A_377" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.J_325" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.H_313" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.L_305" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.Z_297" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.A_377" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.C_365" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.D_357" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.E_349" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.F_341" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.G_333" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.J_325" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.H_313" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.L_305" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.Z_297" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.X_289" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.T_277" is permanently enabled
+Warning: LATCH primitive "InputController:inst7|Next_state.R_269" is permanently enabled
+Info: Registers with preset signals will power-up high
+Info: DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning: Output pins are stuck at VCC or GND
+    Warning (13410): Pin "sync" is stuck at GND
+    Warning (13410): Pin "Blue[1]" is stuck at GND
+    Warning (13410): Pin "Blue[0]" is stuck at GND
+    Warning (13410): Pin "Green[1]" is stuck at GND
+    Warning (13410): Pin "Green[0]" is stuck at GND
+    Warning (13410): Pin "Red[1]" is stuck at GND
+    Warning (13410): Pin "Red[0]" is stuck at GND
+Info: 29 registers lost all their fanouts during netlist optimizations. The first 29 are displayed below.
+    Info: Register "InputController:inst7|State.B" lost all its fanouts during netlist optimizations.
+    Info: Register "InputController:inst7|State.K" lost all its fanouts during netlist optimizations.
+    Info: Register "InputController:inst7|State.V" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[6]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[7]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[8]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[9]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[10]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[11]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[12]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[13]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[14]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[15]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[16]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[17]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[18]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[19]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[20]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[21]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[22]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[23]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[24]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[25]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[26]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[27]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[28]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[29]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[30]" lost all its fanouts during netlist optimizations.
+    Info: Register "single_reg_unit:inst16|count[31]" lost all its fanouts during netlist optimizations.
+Info: Implemented 33398 device resources after synthesis - the final resource count might be different
+    Info: Implemented 4 input pins
+    Info: Implemented 50 output pins
+    Info: Implemented 33344 logic cells
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 36 warnings
+    Info: Peak virtual memory: 357 megabytes
+    Info: Processing ended: Fri Dec 07 15:43:00 2012
+    Info: Elapsed time: 00:03:07
+    Info: Total CPU time (on all processors): 00:03:00
+
+

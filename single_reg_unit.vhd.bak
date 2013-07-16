@@ -1,0 +1,59 @@
+library IEEE;
+library work;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use work.custom_flow.all;
+
+
+entity single_reg_unit is
+	Port( Shift_En, clk, Reset : in std_logic;
+		Shift_In_x, Shift_In_y : in std_logic_vector(9 downto 0);
+		Data_Out_x, Data_Out_y : out REG;
+		bit_vec : out std_logic(34 downto 0)
+		);
+end single_reg_unit;
+
+architecture Behavioral of single_reg_unit is
+
+signal reg_value_x, reg_value_y : REG;
+signal on_off : std_logic_vector(34 downto 0);
+signal count : integer := 0;
+signal frame_clk_div : std_logic_vector(24 downto 0);
+signal div_clk : std_logic_vector;
+
+begin
+--	  process(clk, Reset)
+--	begin
+--		if (Reset = '1') then
+--		frame_clk_div <= "0000000000000000000000000";
+ --   elsif (rising_edge(clk)) then
+--      frame_clk_div <= frame_clk_div + '1';
+--    end if;
+--	end process;
+
+div_clk <= clk;
+
+		
+		
+		operate_reg: process(Reset, Shift_En, div_clk)
+		begin
+		
+		if(Reset = '1') then			
+				--initialize eeverything to 0
+				reg_value_x <= (others=> (others=>'0'));
+				reg_value_y <= (others=> (others=>'0'));
+				on_off <= "00000000000000000000000000000000000";
+				count <= 0;
+		elsif(rising_edge(div_clk) AND Shift_En='1') then
+				reg_value_x(count) <= Shift_In_X;
+				reg_value_x(count) <= Shift_In_Y;
+				count <= count + 1;
+				-- make bit vector
+				on_off <= on_off+on_off+'1';				
+		end if;
+		end process;
+	Data_Out_x <= reg_value_x;	
+	Data_Out_y <= reg_value_y;
+	bit_vec <= on_off;
+end Behavioral;

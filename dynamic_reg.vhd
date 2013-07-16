@@ -1,0 +1,46 @@
+library IEEE;
+library work;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use work.custom_flow.all;
+
+
+entity single_reg_unit is
+	Port( Shift_En, clk, Reset : in std_logic;
+		Shift_In_x, Shift_In_y : in std_logic_vector(9 downto 0);
+		Delete : in std_logic;
+		Data_Out_x, Data_Out_y : out REG;
+		valid_coords : out integer range 0 to 35
+		);
+end single_reg_unit;
+
+architecture Behavioral of single_reg_unit is
+
+signal reg_value_x, reg_value_y : REG := (others=> (others=>'0'));
+signal count : integer := 0;
+
+begin
+	operate_reg: process(Reset, Shift_En,Delete, clk, reg_value_x, reg_value_y, count )
+	begin
+		if(Reset = '1') then
+			reg_value_x <= (others=> (others=>'0'));
+			reg_value_y <= (others=> (others=>'0'));
+			count <= 0;
+		else
+			if(rising_edge(clk) and Shift_En ='1') then
+				-- make bit vector
+				reg_value_x(count) <= Shift_In_x;
+				reg_value_y(count) <= Shift_In_y;
+				count <= count + 1;
+			elsif(rising_edge(clk) and Delete ='1') then
+				reg_value_x(count-1) <= "0000000000";
+				reg_value_y(count-1) <= "0000000000";
+				count <= count - 1;		
+			end if;
+		end if;	
+	end process;
+	Data_Out_x <= reg_value_x;	
+	Data_Out_y <= reg_value_y;
+	valid_coords <= count;
+end Behavioral;

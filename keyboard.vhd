@@ -1,0 +1,120 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity keyboard is
+	Port(
+		Reset, CLK : in std_logic;
+		PS2DATA : in std_logic;
+		PS2CLOCK : in std_logic;
+		KeyOut : out std_logic_vector(7 downto 0);
+		KeyUsed : in std_logic;
+		KeyHexUpper, KeyHexLower : out std_logic_vector(6 downto 0)
+	);
+end keyboard;
+
+architecture Behavioral of keyboard is
+	
+	component clk_div is
+		port( 
+			clk, reset : in std_logic;
+			clkout : out std_logic
+		);
+	end component clk_div;
+	
+	component control is
+	port(
+		Reset, Clk : in std_logic;
+		CurrentCode, PreviousCode : in std_logic_vector(7 downto 0);
+		Shift : out std_logic;
+		KeycodeOut : out std_logic_vector(7 downto 0);
+		Newkeyused : in std_logic
+	);
+	end component control;
+	  
+	component clk_fltr is
+	Port(
+		Clk, Reset : in std_logic;
+		ps2clk : in std_logic;
+		psClk: out std_logic
+		);
+	end component clk_fltr;  
+	  
+	component HexDriver is
+	Port(
+		In0 : in std_logic_vector(3 downto 0);
+		Out0 : out std_logic_vector(6 downto 0)
+	);
+	end component HexDriver; 
+	   
+	component reg_8 is
+	Port(Shift_In, Load, Shift_En, Clk, Reset : in std_logic;
+		D : in std_logic_vector(7 downto 0);
+		Shift_Out : out std_logic;
+		Data_Out : out std_logic_vector(7 downto 0) 
+	);
+	end component reg_8;  
+	  
+	signal ld_reg, shift_sig, shift_out_sig, clk_sig, ps_clock_fltrd : std_logic;
+	signal curr_code, prev_code, KeyOut_sig : std_logic_vector(7 downto 0);
+	
+	begin
+
+	REG0: reg_8 port map(
+		Shift_In => PS2DATA,
+		Load => '0',
+		Shift_En => shift_sig,
+		Clk => ps_clock_fltrd,
+		Reset => Reset,
+		Shift_Out => shift_out_sig,
+		Data_Out => curr_code,
+		D => "XXXXXXXX"
+	);
+	
+	REG1: reg_8 port map(
+		D => "XXXXXXXX",
+		Shift_In => shift_out_sig,
+		Load => '0',
+		Shift_En => shift_sig,
+		Clk => ps_clock_fltrd,
+		Reset => Reset,
+		Data_Out => prev_code
+	);
+	
+	CLK_DIVIDER:  clk_div  port map(
+		clk => CLK,
+		reset => Reset,
+		clkout => clk_sig
+	);
+	
+	CLK_FILTER: clk_fltr port map (
+		Clk => clk_sig,
+		Reset => Reset,
+		ps2clk => PS2CLOCK,
+		psClk => ps_clock_fltrd
+	);
+	
+	CONTROLLER: control port map(
+		Reset => Reset,
+		Clk => ps_clock_fltrd,
+		CurrentCode => curr_code,
+		PreviousCode => prev_code,
+		Shift => shift_sig,
+		KeycodeOut => KeyOut_sig,
+		Newkeyused => KeyUsed
+	);
+
+	HEX0: HexDriver port map(
+		In0 => KeyOut_sig(3 downto 0),
+		Out0 => KeyHexLower
+	);
+
+	HEX1: HexDriver port map(
+		In0 => KeyOut_sig(7 downto 4),
+		Out0 => KeyHexUpper
+	);
+
+    KeyOut <= KeyOut_sig;
+
+end Behavioral;

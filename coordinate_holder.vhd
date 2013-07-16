@@ -1,0 +1,47 @@
+library IEEE;
+library work;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use work.custom_flow.all;
+
+entity coordinate_holder is
+	Port( Clk, Reset : in std_logic;
+		Data_Out_X : out std_logic_vector(9 downto 0);
+		Data_Out_Y : out std_logic_vector(9 downto 0);
+		w,a,s,d,enter : in std_logic
+		);
+end coordinate_holder;
+
+architecture Behavioral of coordinate_holder is
+signal reg_value_x: std_logic_vector(9 downto 0) := X_Min;
+signal reg_value_y: std_logic_vector(9 downto 0) := Y_Min;
+begin
+		operate_reg: process(w,a,s,d, Clk, Reset)
+		begin
+		
+		if(rising_edge(Clk)) then				
+			if(Reset ='1') then
+				reg_value_x <= X_Min;
+				reg_value_y <= Y_Min;
+			elsif(w='1') then
+				reg_value_y <= reg_value_x + 10;
+				reg_value_x <= reg_value_x;
+			elsif(a='1') then
+				reg_value_x <= reg_value_x + 10;
+				reg_value_y <= reg_value_y;
+			elsif(s='1') then
+				reg_value_y <= reg_value_x + 10;
+				reg_value_x <= reg_value_x;
+			elsif(d='1') then
+				reg_value_x <= reg_value_x + 10;
+				reg_value_y <= reg_value_y;
+			else
+				reg_value_x <= reg_value_x;
+				reg_value_y <= reg_value_y;
+			end if;
+		end if;
+		end process;
+	Data_Out_X <= reg_value_x;	
+	Data_Out_Y <= reg_value_y;
+end Behavioral;

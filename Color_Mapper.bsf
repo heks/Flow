@@ -1,0 +1,183 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2010 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 16 16 232 336)
+	(text "Color_Mapper" (rect 5 0 72 12)(font "Arial" ))
+	(text "inst" (rect 8 304 25 316)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "DrawX[9..0]" (rect 0 0 56 12)(font "Arial" ))
+		(text "DrawX[9..0]" (rect 21 27 77 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "DrawY[9..0]" (rect 0 0 59 12)(font "Arial" ))
+		(text "DrawY[9..0]" (rect 21 43 80 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 3))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "SpecX[9..0]" (rect 0 0 56 12)(font "Arial" ))
+		(text "SpecX[9..0]" (rect 21 59 77 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "SpecY[9..0]" (rect 0 0 59 12)(font "Arial" ))
+		(text "SpecY[9..0]" (rect 21 75 80 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "mode" (rect 0 0 27 12)(font "Arial" ))
+		(text "mode" (rect 21 91 48 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 1))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "valid_coords[5..0]" (rect 0 0 88 12)(font "Arial" ))
+		(text "valid_coords[5..0]" (rect 21 107 109 119)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112)(line_width 3))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "Data_In_x[0..35][9..0]" (rect 0 0 108 12)(font "Arial" ))
+		(text "Data_In_x[0..35][9..0]" (rect 21 123 129 135)(font "Arial" ))
+		(line (pt 0 128)(pt 16 128)(line_width 3))
+	)
+	(port
+		(pt 0 144)
+		(input)
+		(text "Data_In_y[0..35][9..0]" (rect 0 0 109 12)(font "Arial" ))
+		(text "Data_In_y[0..35][9..0]" (rect 21 139 130 151)(font "Arial" ))
+		(line (pt 0 144)(pt 16 144)(line_width 3))
+	)
+	(port
+		(pt 0 160)
+		(input)
+		(text "color[3..0]" (rect 0 0 49 12)(font "Arial" ))
+		(text "color[3..0]" (rect 21 155 70 167)(font "Arial" ))
+		(line (pt 0 160)(pt 16 160)(line_width 3))
+	)
+	(port
+		(pt 0 176)
+		(input)
+		(text "Load_En" (rect 0 0 42 12)(font "Arial" ))
+		(text "Load_En" (rect 21 171 63 183)(font "Arial" ))
+		(line (pt 0 176)(pt 16 176)(line_width 1))
+	)
+	(port
+		(pt 0 192)
+		(input)
+		(text "clk" (rect 0 0 14 12)(font "Arial" ))
+		(text "clk" (rect 21 187 35 199)(font "Arial" ))
+		(line (pt 0 192)(pt 16 192)(line_width 1))
+	)
+	(port
+		(pt 0 208)
+		(input)
+		(text "Reset" (rect 0 0 29 12)(font "Arial" ))
+		(text "Reset" (rect 21 203 50 215)(font "Arial" ))
+		(line (pt 0 208)(pt 16 208)(line_width 1))
+	)
+	(port
+		(pt 0 224)
+		(input)
+		(text "vga_clk" (rect 0 0 38 12)(font "Arial" ))
+		(text "vga_clk" (rect 21 219 59 231)(font "Arial" ))
+		(line (pt 0 224)(pt 16 224)(line_width 1))
+	)
+	(port
+		(pt 0 240)
+		(input)
+		(text "PosX[9..0]" (rect 0 0 50 12)(font "Arial" ))
+		(text "PosX[9..0]" (rect 21 235 71 247)(font "Arial" ))
+		(line (pt 0 240)(pt 16 240)(line_width 3))
+	)
+	(port
+		(pt 0 256)
+		(input)
+		(text "PosY[9..0]" (rect 0 0 53 12)(font "Arial" ))
+		(text "PosY[9..0]" (rect 21 251 74 263)(font "Arial" ))
+		(line (pt 0 256)(pt 16 256)(line_width 3))
+	)
+	(port
+		(pt 0 272)
+		(input)
+		(text "calculate" (rect 0 0 43 12)(font "Arial" ))
+		(text "calculate" (rect 21 267 64 279)(font "Arial" ))
+		(line (pt 0 272)(pt 16 272)(line_width 1))
+	)
+	(port
+		(pt 0 288)
+		(input)
+		(text "delete_pipe" (rect 0 0 55 12)(font "Arial" ))
+		(text "delete_pipe" (rect 21 283 76 295)(font "Arial" ))
+		(line (pt 0 288)(pt 16 288)(line_width 1))
+	)
+	(port
+		(pt 216 32)
+		(output)
+		(text "Red[9..0]" (rect 0 0 46 12)(font "Arial" ))
+		(text "Red[9..0]" (rect 149 27 195 39)(font "Arial" ))
+		(line (pt 216 32)(pt 200 32)(line_width 3))
+	)
+	(port
+		(pt 216 48)
+		(output)
+		(text "Green[9..0]" (rect 0 0 55 12)(font "Arial" ))
+		(text "Green[9..0]" (rect 140 43 195 55)(font "Arial" ))
+		(line (pt 216 48)(pt 200 48)(line_width 3))
+	)
+	(port
+		(pt 216 64)
+		(output)
+		(text "Blue[9..0]" (rect 0 0 47 12)(font "Arial" ))
+		(text "Blue[9..0]" (rect 148 59 195 71)(font "Arial" ))
+		(line (pt 216 64)(pt 200 64)(line_width 3))
+	)
+	(port
+		(pt 216 80)
+		(output)
+		(text "str_flag" (rect 0 0 37 12)(font "Arial" ))
+		(text "str_flag" (rect 158 75 195 87)(font "Arial" ))
+		(line (pt 216 80)(pt 200 80)(line_width 1))
+	)
+	(port
+		(pt 216 96)
+		(output)
+		(text "del_flag" (rect 0 0 38 12)(font "Arial" ))
+		(text "del_flag" (rect 157 91 195 103)(font "Arial" ))
+		(line (pt 216 96)(pt 200 96)(line_width 1))
+	)
+	(drawing
+		(rectangle (rect 16 16 200 304)(line_width 1))
+	)
+)

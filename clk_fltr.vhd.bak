@@ -1,0 +1,43 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity clk_fltr is
+	Port(
+	Clk, Reset : in std_logic;
+    ps2clk : in std_logic;
+	psClk: out std_logic);
+end clk_fltr;
+
+architecture Behavioral of clk_fltr is
+
+component dreg is
+Port(
+	D, Clk, reset: in std_logic; -- load connected to shift
+	Q: out std_logic
+	);
+end component;
+
+signal D_out : std_logic_vector(1 downto 0);
+begin
+D1 : dreg
+   Port map(Clk => Clk,
+            D => ps2clk,
+            Q => D_out(0),
+            reset => Reset
+            );
+ D2 : dreg
+   Port map(Clk => Clk,
+            --reset => Reset_h,
+            D => D_out(0),
+            reset => Reset,
+            Q => D_out(1)
+            );           
+	
+	with D_out select
+		psClk <= '1' when "10",
+				 '0' when others;
+ 
+
+end  Behavioral;
